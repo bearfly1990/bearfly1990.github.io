@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Process data by pandas - BF Blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="BF Blog"><meta name="msapplication-TileImage" content="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="BF Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="背景最近做了一些数据处理方面的事，用到了 pandas，记录一下。  python 3.6.5 pandas 0.25 xlrd 1.2.0  默认包引入： 1import pandas as pd"><meta property="og:type" content="blog"><meta property="og:title" content="Process data by pandas"><meta property="og:url" content="https://bearfly1990.github.io/2019/08/17/2019/08/2019-08-17-Pandas/"><meta property="og:site_name" content="BF Blog"><meta property="og:description" content="背景最近做了一些数据处理方面的事，用到了 pandas，记录一下。  python 3.6.5 pandas 0.25 xlrd 1.2.0  默认包引入： 1import pandas as pd"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://bearfly1990.github.io/img/bf/python.jpg"><meta property="article:published_time" content="2019-08-16T16:00:00.000Z"><meta property="article:modified_time" content="2024-03-30T17:22:21.961Z"><meta property="article:author" content="BF"><meta property="article:tag" content="python"><meta property="article:tag" content="excel"><meta property="article:tag" content="pandas"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://bearfly1990.github.io/img/bf/python.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://bearfly1990.github.io/2019/08/17/2019/08/2019-08-17-Pandas/"},"headline":"Process data by pandas","image":["https://bearfly1990.github.io/img/bf/python.jpg"],"datePublished":"2019-08-16T16:00:00.000Z","dateModified":"2024-03-30T17:22:21.961Z","author":{"@type":"Person","name":"BF"},"publisher":{"@type":"Organization","name":"BF Blog","logo":{"@type":"ImageObject","url":"https://bearfly1990.github.io/img/favicon.ico"}},"description":"背景最近做了一些数据处理方面的事，用到了 pandas，记录一下。  python 3.6.5 pandas 0.25 xlrd 1.2.0  默认包引入： 1import pandas as pd"}</script><link rel="canonical" href="https://bearfly1990.github.io/2019/08/17/2019/08/2019-08-17-Pandas/"><link rel="icon" href="/img/favicon.ico"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/favicon.ico" alt="BF Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/bearfly1990"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Buscar" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-image"><span class="image is-7by3"><img class="fill" src="/img/bf/python.jpg" alt="Process data by pandas"></span></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Publicado hace&nbsp;<time dateTime="2019-08-16T16:00:00.000Z" title="2019/8/17 00:00:00">2019-08-17</time></span><span class="level-item">Actualizado hace&nbsp;<time dateTime="2024-03-30T17:22:21.961Z" title="2024/3/31 01:22:21">2024-03-31</time></span><span class="level-item"> BF </span><span class="level-item">11 分钟 de lectura (Aproximadamente 1598 palabras)</span></div></div><h1 class="title is-3 is-size-4-mobile">Process data by pandas</h1><div class="content"><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>最近做了一些数据处理方面的事，用到了 pandas，记录一下。</p>
+<ul>
+<li>python 3.6.5</li>
+<li>pandas 0.25</li>
+<li>xlrd 1.2.0</li>
+</ul>
+<p>默认包引入：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<h1 id="读取-excel"><a href="#读取-excel" class="headerlink" title="读取 excel"></a>读取 excel</h1><p>假设有一张如下数据的 excel 表格：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Name</th>
+<th>gender</th>
+<th>Company</th>
+<th>Salary</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Index_A</td>
+<td>Shawn</td>
+<td>man</td>
+<td>SS</td>
+<td>6666</td>
+</tr>
+<tr>
+<td>Index_B</td>
+<td>Andy</td>
+<td>man</td>
+<td>GG</td>
+<td>5555</td>
+</tr>
+<tr>
+<td>Index_C</td>
+<td>Richard</td>
+<td>man</td>
+<td></td>
+<td>3333</td>
+</tr>
+<tr>
+<td>Index_D</td>
+<td>Rose</td>
+<td>female</td>
+<td>SS</td>
+<td>7777</td>
+</tr>
+<tr>
+<td>Index_E</td>
+<td></td>
+<td></td>
+<td>SS</td>
+<td>6666</td>
+</tr>
+<tr>
+<td>Index_F</td>
+<td>June</td>
+<td>female</td>
+<td>GG</td>
+<td>8888</td>
+</tr>
+<tr>
+<td>Index_G</td>
+<td>Richard</td>
+<td>man</td>
+<td>GG</td>
+<td>4444</td>
+</tr>
+<tr>
+<td>Index_G</td>
+<td>Richard</td>
+<td>mans</td>
+<td>GG</td>
+<td>4444</td>
+</tr>
+</tbody></table>
+<p>使用 pandas 读取：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df_sheet = pd.read_excel(<span class="string">&#x27;test_file.xlsx&#x27;</span>, sheet_name=<span class="string">&#x27;salary01&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(df_sheet)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">  Unnamed: 0      Name  gender Company  Salary</span><br><span class="line">0    Index_A     Shawn     man      SS  6666.0</span><br><span class="line">1    Index_B      Andy     man      GG  5555.0</span><br><span class="line">2    Index_C   Richard     man      GG  3333.0</span><br><span class="line">3    Index_D      Rose  female      SS  7777.0</span><br><span class="line">4    Index_E       NaN     NaN      SS     NaN</span><br><span class="line">5    Index_F      June  female      GG  8888.0</span><br><span class="line">6    Index_G  Richard      man      GG  4444.0</span><br><span class="line">7    Index_H      Paul    mans      GG  5656.0</span><br></pre></td></tr></table></figure>
+
+<p>可以看到第一列没有列名，默认给了<code>Unnamed: 0</code></p>
+<p>index 为 6 那行<code>Richard</code>多了一个空格(在 excel 中故意空出来)</p>
+<p>没有值的 cell 里，在 dateframe 中被填充成<code>NaN</code></p>
+<h2 id="指定索引"><a href="#指定索引" class="headerlink" title="指定索引"></a>指定索引</h2><p>为了使我们第一列被成我们的索引，可以在读取时加参数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df_sheet = pd.read_excel(<span class="string">&#x27;test_file.xlsx&#x27;</span>, sheet_name=<span class="string">&#x27;salary01&#x27;</span>, index_col = [<span class="number">0</span>])</span><br><span class="line"><span class="built_in">print</span>(df_sheet)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">             Name  gender Company  Salary</span><br><span class="line">Index_A     Shawn     man      SS  6666.0</span><br><span class="line">Index_B      Andy     man      GG  5555.0</span><br><span class="line">Index_C   Richard     man     NaN  3333.0</span><br><span class="line">Index_D      Rose  female      SS  7777.0</span><br><span class="line">Index_E       NaN     NaN      SS     NaN</span><br><span class="line">Index_F      June  female      GG  8888.0</span><br><span class="line">Index_G  Richard      man      GG  4444.0</span><br><span class="line">Index_H      Paul    mans      GG  5656.0</span><br></pre></td></tr></table></figure>
+
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p>当我们没有指定数据类型时，pandas 会按他的默认类型加载。</p>
+<p>比如<code>Salary</code>那列默认使用 float 加载，但我们想要的是 int 的话，我们可以使用 convert：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df_sheet = pd.read_excel(<span class="string">&#x27;test_file.xlsx&#x27;</span>, sheet_name=<span class="string">&#x27;salary01&#x27;</span>,  converters = &#123;<span class="string">&#x27;Name&#x27;</span>: <span class="built_in">str</span>, <span class="string">&#x27;Salary&#x27;</span>: <span class="built_in">int</span>&#125;, index_col = [<span class="number">0</span>])</span><br><span class="line"><span class="built_in">print</span>(df_sheet)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">             Name  gender Company Salary</span><br><span class="line">Index_A     Shawn     man      SS   6666</span><br><span class="line">Index_B      Andy     man      GG   5555</span><br><span class="line">Index_C   Richard     man     NaN   3333</span><br><span class="line">Index_D      Rose  female      SS   7777</span><br><span class="line">Index_E       NaN     NaN      SS    NaN</span><br><span class="line">Index_F      June  female      GG   8888</span><br><span class="line">Index_G  Richard      man      GG   4444</span><br><span class="line">Index_H      Paul    mans      GG   5656</span><br></pre></td></tr></table></figure>
+
+<p>更多读取 excel 的详细信息可以参考最后 <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_38546295/article/details/83537558">使用 pandas 读取 excel</a></p>
+<h1 id="处理数据"><a href="#处理数据" class="headerlink" title="处理数据"></a>处理数据</h1><h2 id="得到基本信息"><a href="#得到基本信息" class="headerlink" title="得到基本信息"></a>得到基本信息</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 索引值</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># [&#x27;Index_A&#x27;, &#x27;Index_B&#x27;, &#x27;Index_C&#x27;, &#x27;Index_D&#x27;, &#x27;Index_E&#x27;, &#x27;Index_F&#x27;, &#x27;Index_G&#x27;, &#x27;Index_H&#x27;]</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(df_sheet.index.tolist())</span><br><span class="line"><span class="built_in">print</span>(df_sheet.index.to_list())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 行数 8</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(df_sheet.shape[<span class="number">0</span>])</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(df_sheet))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 列数 4</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># [&#x27;Name&#x27;, &#x27;gender&#x27;, &#x27;Company&#x27;, &#x27;Salary&#x27;]</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(df_sheet.shape[<span class="number">1</span>])</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="reset-index"><a href="#reset-index" class="headerlink" title="reset_index"></a>reset_index</h2><p>在上面我们使用了第一列做为索引，有时候我们希望还是用回默认的数字做为索引，那么就可以使用<code>reset_index</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df_sheet = df_sheet.reset_index()</span><br><span class="line"><span class="built_in">print</span>(df_sheet)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">     index      Name  gender Company Salary</span><br><span class="line">0  Index_A     Shawn     man      SS   6666</span><br><span class="line">1  Index_B      Andy     man      GG   5555</span><br><span class="line">2  Index_C   Richard     man     NaN   3333</span><br><span class="line">3  Index_D      Rose  female      SS   7777</span><br><span class="line">4  Index_E       NaN     NaN      SS    NaN</span><br><span class="line">5  Index_F      June  female      GG   8888</span><br><span class="line">6  Index_G  Richard      man      GG   4444</span><br><span class="line">7  Index_H      Paul    mans      GG   5656</span><br></pre></td></tr></table></figure>
+
+<p>如果不保留原来的索引，加上<code>drop=True</code>参数就可以了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df_sheet = df_sheet.reset_index(drop=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="关于-nan-和-None"><a href="#关于-nan-和-None" class="headerlink" title="关于 nan 和 None"></a>关于 nan 和 None</h2><p><code>dataframe</code>中默认的空值为<code>NaN</code>，这是<code>numpy</code>中的一个类型，特殊的 float。<br><code>Series</code>和<code>DataFrame</code>都会自动把 None 转换成 NaN 然后 运算的时候会把 NaN 当成 0。</p>
+<p>详细可以参考：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/onemorepoint/p/8966791.html">pandas numpy 处理缺失值，none 与 nan 比较</a></p>
+<p>我们最后使用的时候，比如插入数据库前，需要使用 None，所以需要转换一下。</p>
+<p>首先 pandas 提供 <code>fillna</code>方法把<code>NaN</code>数据替换成其它值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df_sheet[<span class="string">&#x27;Salary&#x27;</span>] = df_sheet[<span class="string">&#x27;Salary&#x27;</span>].fillna(<span class="number">0</span>)</span><br><span class="line"><span class="built_in">print</span>(df_sheet)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">     index      Name  gender Company  Salary</span><br><span class="line">0  Index_A     Shawn     man      SS    6666</span><br><span class="line">1  Index_B      Andy     man      GG    5555</span><br><span class="line">2  Index_C   Richard     man     NaN    3333</span><br><span class="line">3  Index_D      Rose  female      SS    7777</span><br><span class="line">4  Index_E       NaN     NaN      SS       0</span><br><span class="line">5  Index_F      June  female      GG    8888</span><br><span class="line">6  Index_G  Richard      man      GG    4444</span><br><span class="line">7  Index_H      Paul    mans      GG    5656</span><br></pre></td></tr></table></figure>
+
+<p>可以看到针对<code>Salary</code>这一列把<code>Nan</code>改成了<code>0</code>，但是如果直接用<code>None</code>却是不行的。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df_sheet[<span class="string">&#x27;Salary&#x27;</span>] = df_sheet[<span class="string">&#x27;Salary&#x27;</span>].fillna(<span class="literal">None</span>)</span><br><span class="line">    <span class="keyword">raise</span> ValueError(<span class="string">&quot;Must specify a fill &#x27;value&#x27; or &#x27;method&#x27;.&quot;</span>)</span><br><span class="line">ValueError: Must specify a fill <span class="string">&#x27;value&#x27;</span> <span class="keyword">or</span> <span class="string">&#x27;method&#x27;</span>.</span><br></pre></td></tr></table></figure>
+
+<p>那么最直接的办法如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df_sheet = df_sheet.where(df_sheet.notnull(), <span class="literal">None</span>)</span><br><span class="line"><span class="built_in">print</span>(df_sheet)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">     index      Name  gender Company Salary</span><br><span class="line">0  Index_A     Shawn     man      SS   6666</span><br><span class="line">1  Index_B      Andy     man      GG   5555</span><br><span class="line">2  Index_C   Richard     man    None   3333</span><br><span class="line">3  Index_D      Rose  female      SS   7777</span><br><span class="line">4  Index_E      None    None      SS   None</span><br><span class="line">5  Index_F      June  female      GG   8888</span><br><span class="line">6  Index_G  Richard      man      GG   4444</span><br><span class="line">7  Index_H      Paul    mans      GG   5656</span><br></pre></td></tr></table></figure>
+
+<h2 id="去掉重复行"><a href="#去掉重复行" class="headerlink" title="去掉重复行"></a>去掉重复行</h2><p>假设我们多了一条重复的数据(Index_H&#x2F;Index_I) 如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">     index      Name  gender Company Salary</span><br><span class="line">0  Index_A     Shawn     man      SS   6666</span><br><span class="line">1  Index_B      Andy     man      GG   5555</span><br><span class="line">2  Index_C   Richard     man    None   3333</span><br><span class="line">3  Index_D      Rose  female      SS   7777</span><br><span class="line">4  Index_E      None    None      SS   None</span><br><span class="line">5  Index_F      June  female      GG   8888</span><br><span class="line">6  Index_G  Richard      man      GG   4444</span><br><span class="line">7  Index_H      Paul    mans      GG   5656</span><br><span class="line">8  Index_I      Paul    mans      GG   5656</span><br></pre></td></tr></table></figure>
+
+<p>我们想要只留下一条数据，那么可以使用如下的方法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df_sheet.drop_duplicates([<span class="string">&#x27;Name&#x27;</span>, <span class="string">&#x27;gender&#x27;</span>, <span class="string">&#x27;Company&#x27;</span>, <span class="string">&#x27;Salary&#x27;</span>], keep=<span class="string">&#x27;last&#x27;</span>, inplace=<span class="literal">True</span>)</span><br><span class="line"><span class="built_in">print</span>(df_sheet)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">     index      Name  gender Company Salary</span><br><span class="line">0  Index_A     Shawn     man      SS   6666</span><br><span class="line">1  Index_B      Andy     man      GG   5555</span><br><span class="line">2  Index_C   Richard     man    None   3333</span><br><span class="line">3  Index_D      Rose  female      SS   7777</span><br><span class="line">4  Index_E      None    None      SS   None</span><br><span class="line">5  Index_F      June  female      GG   8888</span><br><span class="line">6  Index_G  Richard      man      GG   4444</span><br><span class="line">8  Index_I      Paul    mans      GG   5656</span><br></pre></td></tr></table></figure>
+
+<p>因为使用了<code>keep=&#39;last&#39;</code>，所以<code>Index_H</code>这行被删除了。如果想只保留最前面的那条，就可以使用<code>keep=&#39;first&#39;</code></p>
+<h2 id="找到有问题的行列"><a href="#找到有问题的行列" class="headerlink" title="找到有问题的行列"></a>找到有问题的行列</h2><p>在<code>Index_I</code>我们可以看到这行的<code>gender</code>为<code>mans</code>是有问题的，我们可以找到他，只允许<code>man</code>和<code>female</code>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df_sheet_by_gender = df_sheet[(df_sheet[<span class="string">&#x27;gender&#x27;</span>]!=<span class="string">&#x27;man&#x27;</span>) &amp; (df_sheet[<span class="string">&#x27;gender&#x27;</span>]!=<span class="string">&#x27;female&#x27;</span>)]</span><br><span class="line"><span class="built_in">print</span>(df_sheet_by_gender)</span><br><span class="line"><span class="built_in">print</span>(df_sheet_by_gender.index.tolist())</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">     index  Name gender Company Salary</span><br><span class="line">4  Index_E  None   None      SS   None</span><br><span class="line">8  Index_I  Paul   mans      GG   5656</span><br><span class="line">[4, 8]</span><br></pre></td></tr></table></figure>
+
+<p>也可以使用下面的方式:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">test</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> x <span class="keyword">not</span> <span class="keyword">in</span> [<span class="string">&#x27;man&#x27;</span>, <span class="string">&#x27;female&#x27;</span>]</span><br><span class="line">df_sheet_by_gender = df_sheet[df_sheet[<span class="string">&#x27;gender&#x27;</span>].apply(<span class="keyword">lambda</span> x: test(x))]</span><br><span class="line"><span class="built_in">print</span>(df_sheet_by_gender)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">     index  Name gender Company Salary</span><br><span class="line">4  Index_E  None   None      SS   None</span><br><span class="line">8  Index_I  Paul   mans      GG   5656</span><br></pre></td></tr></table></figure>
+
+<p>当然还可以使用 iloc&#x2F;loc 等其它方法找到你想要的值</p>
+<h2 id="新增一列"><a href="#新增一列" class="headerlink" title="新增一列"></a>新增一列</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df_sheet[<span class="string">&#x27;new_column&#x27;</span>] = df_sheet[<span class="string">&#x27;Salary&#x27;</span>]*<span class="number">3</span></span><br><span class="line"><span class="built_in">print</span>(df_sheet)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">     index      Name  gender Company Salary new_column</span><br><span class="line">0  Index_A     Shawn     man      SS   6666      19998</span><br><span class="line">1  Index_B      Andy     man      GG   5555      16665</span><br><span class="line">2  Index_C   Richard     man    None   3333       9999</span><br><span class="line">3  Index_D      Rose  female      SS   7777      23331</span><br><span class="line">4  Index_E      None    None      SS   None        NaN</span><br><span class="line">5  Index_F      June  female      GG   8888      26664</span><br><span class="line">6  Index_G  Richard      man      GG   4444      13332</span><br><span class="line">8  Index_I      Paul    mans      GG   5656      16968</span><br></pre></td></tr></table></figure>
+
+<h1 id="输出到新的-Excel-中"><a href="#输出到新的-Excel-中" class="headerlink" title="输出到新的 Excel 中"></a>输出到新的 Excel 中</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df_sheet.to_excel(<span class="string">&quot;output.xlsx&quot;</span>, sheet_name=<span class="string">&#x27;newsheet&#x27;</span>, index=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+
+<p>可以选择需要的列</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df_sheet.to_excel(<span class="string">&quot;output.xlsx&quot;</span>, sheet_name=<span class="string">&#x27;newsheet&#x27;</span>, index=<span class="literal">False</span>, columns=[<span class="string">&#x27;Name&#x27;</span>, <span class="string">&#x27;Company&#x27;</span>, <span class="string">&#x27;Salary&#x27;</span>])</span><br></pre></td></tr></table></figure>
+
+<h1 id="dataframe-to-list"><a href="#dataframe-to-list" class="headerlink" title="dataframe to list"></a>dataframe to list</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(df_sheet.index.tolist())</span><br><span class="line"><span class="built_in">print</span>(df_sheet.values.tolist())</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[0, 1, 2, 3, 4, 5, 6, 8]</span><br><span class="line">[[&#x27;Index_A&#x27;, &#x27;Shawn&#x27;, &#x27;man&#x27;, &#x27;SS&#x27;, 6666, 19998], [&#x27;Index_B&#x27;, &#x27;Andy&#x27;, &#x27;man&#x27;, &#x27;GG&#x27;, 5555, 16665], [&#x27;Index_C&#x27;, &#x27;Richard&#x27;, &#x27;man&#x27;, None, 3333, 9999], [&#x27;Index_D&#x27;, &#x27;Rose&#x27;, &#x27;female&#x27;, &#x27;SS&#x27;, 7777, 23331], [&#x27;Index_E&#x27;, None, None, &#x27;SS&#x27;, None, nan], [&#x27;Index_F&#x27;, &#x27;June&#x27;, &#x27;female&#x27;, &#x27;GG&#x27;, 8888, 26664], [&#x27;Index_G&#x27;, &#x27;Richard &#x27;, &#x27;man&#x27;, &#x27;GG&#x27;, 4444, 13332], [&#x27;Index_I&#x27;, &#x27;Paul&#x27;, &#x27;mans&#x27;, &#x27;GG&#x27;, 5656, 16968]]</span><br></pre></td></tr></table></figure>
+
+<p>参考:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_34377830/article/details/81872568">Pandas 读取并修改 excel</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_38546295/article/details/83537558">使用 pandas 读取 excel</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/louyifei0824/p/9942430.html">pandas 中的空值处理</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/onemorepoint/p/8966791.html">pandas numpy 处理缺失值，none 与 nan 比较</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/kancy110/article/details/70142728">Pandas 标记删除重复记录</a></li>
+<li><a target="_blank" rel="noopener" href="https://pandas.pydata.org/pandas-docs/stable/whatsnew/v0.25.0.html">pandas 0.25.0 documentation</a></li>
+</ul>
+</div><div class="article-licensing box"><div class="licensing-title"><p>Process data by pandas</p><p><a href="https://bearfly1990.github.io/2019/08/17/2019/08/2019-08-17-Pandas/">https://bearfly1990.github.io/2019/08/17/2019/08/2019-08-17-Pandas/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>BF</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2019-08-17</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2024-03-31</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/python/">python</a><a class="link-muted mr-2" rel="tag" href="/tags/excel/">excel</a><a class="link-muted mr-2" rel="tag" href="/tags/pandas/">pandas</a></div><div class="sharethis-inline-share-buttons"></div><script src="http://localhost:4000" defer></script></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2019/08/28/2019/08/2019-08-28-RecentSummary/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">Recent Summary 08/28/2019</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2019/06/25/2019/06/2019-06-23-TkinterDemo/"><span class="level-item">Tinkter Demo</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/mybear.jpg" alt="bearfly1990"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">bearfly1990</p><p class="is-size-6 is-block">有熊在飞</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>HZ, China</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Entradas</p><a href="/archives/"><p class="title">98</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categorías</p><a href="/categories/"><p class="title">5</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Etiquetas</p><a href="/tags/"><p class="title">121</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/bearfly1990" target="_blank" rel="me noopener">SEGUIR</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/bearfly1990"><i class="fab fa-github"></i></a></div></div></div><!--!--></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/favicon.ico" alt="BF Blog" height="28"></a><p class="is-size-7"><span>&copy; 2025 BF</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Volver arriba" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "Este sitio web utiliza cookies para mejorar su experiencia.",
+          dismiss: "¡Entendido!",
+          allow: "Permitir cookies",
+          deny: "Descenso",
+          link: "Aprende más",
+          policy: "Política de cookies",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Teclea algo..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Teclea algo...","untitled":"(Sin título)","posts":"Entradas","pages":"Páginas","categories":"Categorías","tags":"Etiquetas"});
+        });</script></body></html>

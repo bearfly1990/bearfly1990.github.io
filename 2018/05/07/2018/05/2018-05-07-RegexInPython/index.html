@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Regex in python - BF Blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="BF Blog"><meta name="msapplication-TileImage" content="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="BF Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="Regex in python 简介正则表达式 是在文本处理的时候非常高效有用的一种方式，一般的编程语言都会内置相应的模块。 不同的编程语言使用方式不尽相同，核心的表达式模式都是一致的。 最近使用python生成Message，有用到正则表达式，今天简单的总结下python使用的方式。对于表达式本身的使用，之后有时间再详细介绍。"><meta property="og:type" content="blog"><meta property="og:title" content="Regex in python"><meta property="og:url" content="https://bearfly1990.github.io/2018/05/07/2018/05/2018-05-07-RegexInPython/"><meta property="og:site_name" content="BF Blog"><meta property="og:description" content="Regex in python 简介正则表达式 是在文本处理的时候非常高效有用的一种方式，一般的编程语言都会内置相应的模块。 不同的编程语言使用方式不尽相同，核心的表达式模式都是一致的。 最近使用python生成Message，有用到正则表达式，今天简单的总结下python使用的方式。对于表达式本身的使用，之后有时间再详细介绍。"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://bearfly1990.github.io/img/post-bg-kuaidi.jpg"><meta property="article:published_time" content="2018-05-06T16:00:00.000Z"><meta property="article:modified_time" content="2024-03-30T17:22:21.945Z"><meta property="article:author" content="BF"><meta property="article:tag" content="python"><meta property="article:tag" content="regex"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://bearfly1990.github.io/img/post-bg-kuaidi.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://bearfly1990.github.io/2018/05/07/2018/05/2018-05-07-RegexInPython/"},"headline":"Regex in python","image":["https://bearfly1990.github.io/img/post-bg-kuaidi.jpg"],"datePublished":"2018-05-06T16:00:00.000Z","dateModified":"2024-03-30T17:22:21.945Z","author":{"@type":"Person","name":"BF"},"publisher":{"@type":"Organization","name":"BF Blog","logo":{"@type":"ImageObject","url":"https://bearfly1990.github.io/img/favicon.ico"}},"description":"Regex in python 简介正则表达式 是在文本处理的时候非常高效有用的一种方式，一般的编程语言都会内置相应的模块。 不同的编程语言使用方式不尽相同，核心的表达式模式都是一致的。 最近使用python生成Message，有用到正则表达式，今天简单的总结下python使用的方式。对于表达式本身的使用，之后有时间再详细介绍。"}</script><link rel="canonical" href="https://bearfly1990.github.io/2018/05/07/2018/05/2018-05-07-RegexInPython/"><link rel="icon" href="/img/favicon.ico"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/favicon.ico" alt="BF Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/bearfly1990"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Buscar" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-image"><span class="image is-7by3"><img class="fill" src="/img/post-bg-kuaidi.jpg" alt="Regex in python"></span></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Publicado hace&nbsp;<time dateTime="2018-05-06T16:00:00.000Z" title="2018/5/7 00:00:00">2018-05-07</time></span><span class="level-item">Actualizado hace&nbsp;<time dateTime="2024-03-30T17:22:21.945Z" title="2024/3/31 01:22:21">2024-03-31</time></span><span class="level-item"> BF </span><span class="level-item">5 分钟 de lectura (Aproximadamente 741 palabras)</span></div></div><h1 class="title is-3 is-size-4-mobile">Regex in python</h1><div class="content"><h2 id="Regex-in-python-简介"><a href="#Regex-in-python-简介" class="headerlink" title="Regex in python 简介"></a>Regex in python 简介</h2><p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Regular_expression">正则表达式</a> 是在文本处理的时候非常高效有用的一种方式，一般的编程语言都会内置相应的模块。</p>
+<p>不同的编程语言使用方式不尽相同，核心的表达式模式都是一致的。</p>
+<p>最近使用python生成Message，有用到正则表达式，今天简单的总结下python使用的方式。对于表达式本身的使用，之后有时间再详细介绍。</p>
+<span id="more"></span>
+<h3 id="re-match"><a href="#re-match" class="headerlink" title="re.match"></a>re.match</h3><p>首先介绍下<code>re.match(pattern, string, flags=0)</code>。</p>
+<p>如果能匹配上，这个方法将会返回match对象, 如果失败的话就会返回None。</p>
+<p>看下面这个例子，我在创建message的时候，希望通过配置类似于<code>Suffix[1-100]</code>这样的方式来生成message中的变量。我需要得到前缀<code>Suffix</code>,最小值<code>1</code>,最大值<code>100</code>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">line = <span class="string">&quot;Suffix[1-100]&quot;</span></span><br><span class="line"></span><br><span class="line">matchObj = re.<span class="keyword">match</span>( <span class="string">r&#x27;(.*)\[(.*?)-(.*?)\]&#x27;</span>, line, re.M|re.I)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> matchObj:</span><br><span class="line">   <span class="built_in">print</span> (<span class="string">&quot;matchObj.group() : &quot;</span>, matchObj.group())</span><br><span class="line">   <span class="built_in">print</span> (<span class="string">&quot;matchObj.group(1) : &quot;</span>, matchObj.group(<span class="number">1</span>))</span><br><span class="line">   <span class="built_in">print</span> (<span class="string">&quot;matchObj.group(2) : &quot;</span>, matchObj.group(<span class="number">2</span>))</span><br><span class="line">   <span class="built_in">print</span> (<span class="string">&quot;matchObj.group(3) : &quot;</span>, matchObj.group(<span class="number">3</span>))</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">   <span class="built_in">print</span> (<span class="string">&quot;No match!!&quot;</span>)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;output</span></span><br><span class="line"><span class="string">matchObj.group() :  Suffix[1-100]</span></span><br><span class="line"><span class="string">matchObj.group(1) :  Suffix</span></span><br><span class="line"><span class="string">matchObj.group(2) :  1</span></span><br><span class="line"><span class="string">matchObj.group(3) :  100</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>通过<code>match</code>方法，利用<code>group()</code>就能很方便的把固定格式的数据提取出来。</p>
+<h3 id="re-search"><a href="#re-search" class="headerlink" title="re.search"></a>re.search</h3><p>在字符串中利用正则表达式查找匹配相可以使用<code>re.search(pattern, string, flags=0)</code></p>
+<p>那么<code>search</code>和<code>match</code>有什么区别呢？</p>
+<p>其实从名字上就可以看出来，<code>search</code>是在整个字符串里找符合匹配的就可以，而<code>match</code>要求整个字符串来匹配。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line">line = <span class="string">&quot;Cats are smarter than dogs, but I like dogs:) &quot;</span>;</span><br><span class="line"></span><br><span class="line">matchObj = re.<span class="keyword">match</span>( <span class="string">r&#x27;dogs&#x27;</span>, line, re.M|re.I)</span><br><span class="line"><span class="keyword">if</span> matchObj:</span><br><span class="line">   <span class="built_in">print</span> (<span class="string">&quot;match --&gt; matchObj.group() : &quot;</span>, matchObj.group())</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">   <span class="built_in">print</span> (<span class="string">&quot;No match!!&quot;</span>)</span><br><span class="line"></span><br><span class="line">searchObj = re.search( <span class="string">r&#x27;dogs&#x27;</span>, line, re.M|re.I)</span><br><span class="line"><span class="keyword">if</span> searchObj:</span><br><span class="line">   <span class="built_in">print</span> (<span class="string">&quot;search --&gt; searchObj.group() : &quot;</span>, searchObj.group())</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">   <span class="built_in">print</span> (<span class="string">&quot;Nothing found!!&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="re-sub"><a href="#re-sub" class="headerlink" title="re.sub"></a>re.sub</h3><p><code>re.sub(pattern, repl, string, max=0)</code>用来查找和替换字符串。<code>max</code>是可选的，表示替换的个数，默认是全部替换。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">phone = <span class="string">&quot;2004-959-559 # This is Phone Number&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Delete Python-style comments</span></span><br><span class="line">num = re.sub(<span class="string">r&#x27;#.*$&#x27;</span>, <span class="string">&quot;&quot;</span>, phone)</span><br><span class="line"><span class="built_in">print</span> <span class="string">&quot;Phone Num : &quot;</span>, num</span><br><span class="line"></span><br><span class="line"><span class="comment"># Remove anything other than digits</span></span><br><span class="line">num = re.sub(<span class="string">r&#x27;\D&#x27;</span>, <span class="string">&quot;&quot;</span>, phone)    </span><br><span class="line"><span class="built_in">print</span> <span class="string">&quot;Phone Num : &quot;</span>, num</span><br></pre></td></tr></table></figure>
+
+<h3 id="string"><a href="#string" class="headerlink" title="string"></a>string</h3><p>就像其它编程语言一样，python中<code>string</code>已经内置了一些和文本有关的方法，可以直接方便使用。<br><code>s.startswith(prefix[,start[,end]])</code><br><code>s.endswith(suffix[,start[,end]])</code><br><code>s.find(sub[,start[,end]])</code><br><code>s.split([sep])</code><br>…</p>
+<h3 id="Flags"><a href="#Flags" class="headerlink" title="Flags"></a>Flags</h3><p>上面的例子中，大家发现了又用到<code>re.M|re.I</code>,这些常量是用来定义匹配模式的，</p>
+<table>
+<thead>
+<tr>
+<th>Sr.No.</th>
+<th align="center">Modifier</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td align="center">re.I</td>
+<td>大小写敏感</td>
+</tr>
+<tr>
+<td>2</td>
+<td align="center">re.L</td>
+<td>使用Local,影响<code>\W</code> <code>\w</code>和<code>\B</code> <code>\b</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td align="center">re.M</td>
+<td>^匹配行结尾  $匹配行开头</td>
+</tr>
+<tr>
+<td>4</td>
+<td align="center">re.S</td>
+<td>让<code>.</code>匹配任何字符，包括换行</td>
+</tr>
+<tr>
+<td>5</td>
+<td align="center">re.U</td>
+<td>使用Unicode编码 影响<code>\W</code> <code>\w</code>和<code>\B</code> <code>\b</code></td>
+</tr>
+<tr>
+<td>6</td>
+<td align="center">re.X</td>
+<td>允许<code>cuter</code>语法，忽略空白(在[]或者\）,并将#做为一般正常字符</td>
+</tr>
+</tbody></table>
+<p>更具体的信息参考：<a target="_blank" rel="noopener" href="https://www.tutorialspoint.com/python/python_reg_expressions.htm">Python - Regular Expressions</a></p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>Regex in python</p><p><a href="https://bearfly1990.github.io/2018/05/07/2018/05/2018-05-07-RegexInPython/">https://bearfly1990.github.io/2018/05/07/2018/05/2018-05-07-RegexInPython/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>BF</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2018-05-07</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2024-03-31</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/python/">python</a><a class="link-muted mr-2" rel="tag" href="/tags/regex/">regex</a></div><div class="sharethis-inline-share-buttons"></div><script src="http://localhost:4000" defer></script></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2018/05/09/2018/05/2018-05-09-ACM-Python/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">ACM with Python</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2018/04/27/2018/04/2018-04-27-chartjs/"><span class="level-item">chart.js</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/mybear.jpg" alt="bearfly1990"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">bearfly1990</p><p class="is-size-6 is-block">有熊在飞</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>HZ, China</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Entradas</p><a href="/archives/"><p class="title">98</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categorías</p><a href="/categories/"><p class="title">5</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Etiquetas</p><a href="/tags/"><p class="title">121</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/bearfly1990" target="_blank" rel="me noopener">SEGUIR</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/bearfly1990"><i class="fab fa-github"></i></a></div></div></div><!--!--></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/favicon.ico" alt="BF Blog" height="28"></a><p class="is-size-7"><span>&copy; 2025 BF</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Volver arriba" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "Este sitio web utiliza cookies para mejorar su experiencia.",
+          dismiss: "¡Entendido!",
+          allow: "Permitir cookies",
+          deny: "Descenso",
+          link: "Aprende más",
+          policy: "Política de cookies",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Teclea algo..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Teclea algo...","untitled":"(Sin título)","posts":"Entradas","pages":"Páginas","categories":"Categorías","tags":"Etiquetas"});
+        });</script></body></html>

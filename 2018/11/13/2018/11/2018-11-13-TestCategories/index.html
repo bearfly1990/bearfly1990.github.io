@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Software Test Categories - BF Blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="BF Blog"><meta name="msapplication-TileImage" content="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="BF Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="软件测试的分类在刚入测试坑的时候，测试的基本概念还停留在早期学习的相关知识。对于黑盒&amp;#x2F;白盒，单元测试，集成测试，冒烟测试等多多少少有点了解，但其实分的不是很清楚。 入坑之后，补充过基础知识，参加过一些培训，再加上真正深入测试工作，才有了更多的体会，恍然大悟的感觉。 今天主要总结下软件测试的分类。"><meta property="og:type" content="blog"><meta property="og:title" content="Software Test Categories"><meta property="og:url" content="https://bearfly1990.github.io/2018/11/13/2018/11/2018-11-13-TestCategories/"><meta property="og:site_name" content="BF Blog"><meta property="og:description" content="软件测试的分类在刚入测试坑的时候，测试的基本概念还停留在早期学习的相关知识。对于黑盒&amp;#x2F;白盒，单元测试，集成测试，冒烟测试等多多少少有点了解，但其实分的不是很清楚。 入坑之后，补充过基础知识，参加过一些培训，再加上真正深入测试工作，才有了更多的体会，恍然大悟的感觉。 今天主要总结下软件测试的分类。"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://bearfly1990.github.io/img/bf/lily_01.jpg"><meta property="article:published_time" content="2018-11-12T16:00:00.000Z"><meta property="article:modified_time" content="2024-03-30T17:22:21.952Z"><meta property="article:author" content="BF"><meta property="article:tag" content="test"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://bearfly1990.github.io/img/bf/lily_01.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://bearfly1990.github.io/2018/11/13/2018/11/2018-11-13-TestCategories/"},"headline":"Software Test Categories","image":["https://bearfly1990.github.io/img/bf/lily_01.jpg"],"datePublished":"2018-11-12T16:00:00.000Z","dateModified":"2024-03-30T17:22:21.952Z","author":{"@type":"Person","name":"BF"},"publisher":{"@type":"Organization","name":"BF Blog","logo":{"@type":"ImageObject","url":"https://bearfly1990.github.io/img/favicon.ico"}},"description":"软件测试的分类在刚入测试坑的时候，测试的基本概念还停留在早期学习的相关知识。对于黑盒&#x2F;白盒，单元测试，集成测试，冒烟测试等多多少少有点了解，但其实分的不是很清楚。 入坑之后，补充过基础知识，参加过一些培训，再加上真正深入测试工作，才有了更多的体会，恍然大悟的感觉。 今天主要总结下软件测试的分类。"}</script><link rel="canonical" href="https://bearfly1990.github.io/2018/11/13/2018/11/2018-11-13-TestCategories/"><link rel="icon" href="/img/favicon.ico"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/favicon.ico" alt="BF Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/bearfly1990"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Buscar" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-image"><span class="image is-7by3"><img class="fill" src="/img/bf/lily_01.jpg" alt="Software Test Categories"></span></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Publicado hace&nbsp;<time dateTime="2018-11-12T16:00:00.000Z" title="2018/11/13 00:00:00">2018-11-13</time></span><span class="level-item">Actualizado hace&nbsp;<time dateTime="2024-03-30T17:22:21.952Z" title="2024/3/31 01:22:21">2024-03-31</time></span><span class="level-item"> BF </span><span class="level-item">23 分钟 de lectura (Aproximadamente 3475 palabras)</span></div></div><h1 class="title is-3 is-size-4-mobile">Software Test Categories</h1><div class="content"><h1 id="软件测试的分类"><a href="#软件测试的分类" class="headerlink" title="软件测试的分类"></a>软件测试的分类</h1><p>在刚入测试坑的时候，测试的基本概念还停留在早期学习的相关知识。对于黑盒&#x2F;白盒，单元测试，集成测试，冒烟测试等多多少少有点了解，但其实分的不是很清楚。</p>
+<p>入坑之后，补充过基础知识，参加过一些培训，再加上真正深入测试工作，才有了更多的体会，恍然大悟的感觉。</p>
+<p>今天主要总结下软件测试的分类。</p>
+<span id="more"></span>
+<h2 id="按软件测试的阶段"><a href="#按软件测试的阶段" class="headerlink" title="按软件测试的阶段"></a>按软件测试的阶段</h2><h3 id="单元测试-Unit-Testing"><a href="#单元测试-Unit-Testing" class="headerlink" title="单元测试(Unit Testing)"></a>单元测试(Unit Testing)</h3><p>单元测试是对软件组成单元进行测试。其目的是检验软件基本组成单位的正确性。测试的对象是软件设计的最小单位：模块。所以也可能被称为<strong>模块测试</strong></p>
+<ul>
+<li>测试阶段：编码后</li>
+<li>测试对象：最小模块</li>
+<li>测试人员：白盒测试工程师或开发工程师</li>
+<li>测试依据：代码和注释+详细设计文档</li>
+<li>测试方法：白盒测试</li>
+<li>测试内容：模块接口测试、局部数据结构测试、路径测试、错误处理测试、边界测试</li>
+</ul>
+<h3 id="集成测试-Integration-Testing"><a href="#集成测试-Integration-Testing" class="headerlink" title="集成测试(Integration Testing)"></a>集成测试(Integration Testing)</h3><p>集成测试也称联合测试、组装测试，将程序模块采用适当的集成策略组装起来，对系统的接口及集成后的功能进行正确性检测的测试工作。主要目的是检查软件单位之间的接口是否正确。</p>
+<ul>
+<li>测试阶段：一般单元测试之后进行</li>
+<li>测试对象：模块间的接口</li>
+<li>测试人员：白盒测试工程师或开发工程师</li>
+<li>测试依据：单元测试的模块+概要设计文档</li>
+<li>测试方法：黑盒测试与白盒测试相结合</li>
+<li>测试内容：模块之间数据传输、模块之间功能冲突、模块组装功能正确性、全局数据结构、单模块缺陷对系统的影响</li>
+</ul>
+<h3 id="系统测试-System-Testing"><a href="#系统测试-System-Testing" class="headerlink" title="系统测试(System Testing)"></a>系统测试(System Testing)</h3><p>将软件系统看成是一个系统的测试。包括对功能、性能以及软件所运行的软硬件环境进行测试。一般测试的时间也是最多花在系统测试阶段，耗费最多的人时，并且自动化的 Case 都要覆盖。</p>
+<ul>
+<li>测试阶段：集成测试通过之后</li>
+<li>测试对象：整个系统（软、硬件）</li>
+<li>测试人员：黑盒测试工程师</li>
+<li>测试依据：需求规格说明文档</li>
+<li>测试方法：黑盒测试</li>
+<li>测试内容：功能、界面、可靠性、易用性、性能、兼容性、安全性等</li>
+</ul>
+<h3 id="验收测试-Acceptance-Testing"><a href="#验收测试-Acceptance-Testing" class="headerlink" title="验收测试(Acceptance Testing)"></a>验收测试(Acceptance Testing)</h3><p>验收测试是部署软件之前的最后一个测试操作。它是技术测试的最后一个阶段，也称为交付测试。验收测试的目的是确保软件准备就绪，按照项目合同、任务书、双方约定的验收依据文档，向软件购买都展示该软件系统满足原始需求。</p>
+<ul>
+<li>测试阶段：系统测试通过之后</li>
+<li>测试对象：整个系统（包括软硬件）。</li>
+<li>测试人员：主要是最终用户或者需求方。</li>
+<li>测试依据：用户需求、验收标准</li>
+<li>测试方法：黑盒测试</li>
+<li>测试内容：同系统测试(功能…各类文档等)</li>
+</ul>
+<h2 id="按是否查看代码划分"><a href="#按是否查看代码划分" class="headerlink" title="按是否查看代码划分"></a>按是否查看代码划分</h2><h3 id="黑盒测试-Black-box-Testing"><a href="#黑盒测试-Black-box-Testing" class="headerlink" title="黑盒测试(Black-box Testing)"></a>黑盒测试(Black-box Testing)</h3><p>黑盒测试也称功能测试，测试中把被测的软件当成一个黑盒子，不关心盒子的内部结构是什么，只关心软件的输入数据与输出数据。</p>
+<h3 id="白盒测试-White-box-Testing"><a href="#白盒测试-White-box-Testing" class="headerlink" title="白盒测试(White-box Testing)"></a>白盒测试(White-box Testing)</h3><p>白盒测试又称结构测试、透明盒测试、逻辑驱动测试或基于代码的测试。白盒指的打开盒子，去研究里面的源代码和程序结果。</p>
+<h3 id="灰盒测试-Gray-Box-Testing"><a href="#灰盒测试-Gray-Box-Testing" class="headerlink" title="灰盒测试(Gray-Box Testing)"></a>灰盒测试(Gray-Box Testing)</h3><p>灰盒测试，是介于白盒测试与黑盒测试之间的一种测试，灰盒测试多用于集成测试阶段，不仅关注输出、输入的正确性，同时也关注程序内部的情况。</p>
+<h2 id="按是否执行程序划分"><a href="#按是否执行程序划分" class="headerlink" title="按是否执行程序划分"></a>按是否执行程序划分</h2><h3 id="静态测试-Static-testing"><a href="#静态测试-Static-testing" class="headerlink" title="静态测试(Static testing)"></a>静态测试(Static testing)</h3><p>静态测试是指不运行被测程序本身，仅通过分析或检查源程序的语法、结构、过程、接口等来检查程序的正确性。对需求规格说明书、软件设计说明书、源程序做结构分析、流程图分析、符号执行来找错。</p>
+<h4 id="检查项："><a href="#检查项：" class="headerlink" title="检查项："></a>检查项：</h4><ul>
+<li>代码风格和规则审核；</li>
+<li>程序设计和结构的审核；</li>
+<li>业务逻辑的审核；</li>
+<li>走查、审查与技术复审手册。</li>
+</ul>
+<h4 id="静态质量："><a href="#静态质量：" class="headerlink" title="静态质量："></a>静态质量：</h4><p>度量所依据的标准是 ISO9126。在该标准中，软件的质量用以下几个方面来衡量，即:</p>
+<ul>
+<li>功能性(Functionality)</li>
+<li>可靠性(Reliability)</li>
+<li>可用性(Usability)</li>
+<li>有效性(Efficiency)</li>
+<li>可维护性（Maintainability）</li>
+<li>可移植性(Portability)。</li>
+</ul>
+<h3 id="动态测试-Dynamic-testing"><a href="#动态测试-Dynamic-testing" class="headerlink" title="动态测试(Dynamic testing)"></a>动态测试(Dynamic testing)</h3><p>动态测试方法是指通过运行被测程序，检查运行结果与预期结果的差异，并分析运行效率、正确性和健壮性等性能。这种方法由三部分组成：构造测试用例、执行程序、分析程序的输出结果。</p>
+<h2 id="按是否手工执行测试"><a href="#按是否手工执行测试" class="headerlink" title="按是否手工执行测试"></a>按是否手工执行测试</h2><h3 id="手工测试-Manual-testing"><a href="#手工测试-Manual-testing" class="headerlink" title="手工测试(Manual testing)"></a>手工测试(Manual testing)</h3><p>手工测试就是由人去一个一个的输入用例，然后观察结果，和机器测试相对应，属于比较原始但是必须的一个步骤。</p>
+<p><strong>优点：</strong> 自动化无法替代探索性测试、发散思维类无既定结果的测试。</p>
+<p><strong>缺点：</strong> 执行效率慢，量大易错。</p>
+<h3 id="自动化测试-Automation-Testing"><a href="#自动化测试-Automation-Testing" class="headerlink" title="自动化测试(Automation Testing)"></a>自动化测试(Automation Testing)</h3><p>就是在预设条件下运行系统或应用程序，评估运行结果，预先条件应包括正常条件和异常条件。简单说自动化测试是把以人为驱动的测试行为转化为机器执行的一种过程。</p>
+<p>自动化测试又可分为：</p>
+<ul>
+<li>功能测试自动化</li>
+<li>性能测试自动化</li>
+<li>安全测试自动化。</li>
+</ul>
+<p>通常所说的自动化是指<strong>功能测试自动化</strong>。<br>AI 技术的兴起发展，类似可预见工作都有可能会被伪 AI 代替。</p>
+<h2 id="按软件质量特性分类"><a href="#按软件质量特性分类" class="headerlink" title="按软件质量特性分类"></a>按软件质量特性分类</h2><h3 id="安全测试-Security-Testing"><a href="#安全测试-Security-Testing" class="headerlink" title="安全测试(Security Testing)"></a>安全测试(Security Testing)</h3><p>安全测试是在 IT 软件产品的生命周期中，特别是产品开发基本完成到发布阶段，对产品进行检验以验证产品符合安全需求定义和产品质量标准的过程。</p>
+<p>现在对安全知识的普及，大家意识都提上来了。比如现在越来越多的不支持 HTTP 协议，转用 HTTPS 等。</p>
+<h3 id="性能测试-Performance-Testing"><a href="#性能测试-Performance-Testing" class="headerlink" title="性能测试(Performance Testing)"></a>性能测试(Performance Testing)</h3><p>性能测试是通过自动化的测试工具模拟多种正常、峰值以及异常负载条件来对系统的各项性能指标进行测试。</p>
+<p><strong>可靠性测试</strong>和<strong>压力测试</strong>都属于性能测试，两者可以结合进行。</p>
+<p>通过负载测试，确定在各种工作负载下系统的性能，目标是测试当负载逐渐增加时，系统各项性能指标的变化情况。压力测试是通过确定一个系统的瓶颈或者不能接受的性能点，来获得系统能提供的最大服务级别的测试。</p>
+<h3 id="可靠性测试-Reliability-Testing"><a href="#可靠性测试-Reliability-Testing" class="headerlink" title="可靠性测试(Reliability Testing)"></a>可靠性测试(Reliability Testing)</h3><p>软件可靠性 (software reliability )是软件产品在规定的条件下和规定的时间区间完成规定功能的能力。</p>
+<p>规定的条件是指直接与软件运行相关的使用该软件的计算机系统的状态和软件的输入条件，或统称为软件运行时的外部输入条件;<br>规定的时间区间是指软件的实际运行时间区间;规定功能是指为提供给定的服务，软件产品所必须具备的功能。</p>
+<p>软件可靠性不但与软件存在的缺陷和(或)差错有关，而且与系统输入和系统使用有关。软件可靠性的概率度量称软件可靠度。</p>
+<h3 id="安装测试-Installing-Testing"><a href="#安装测试-Installing-Testing" class="headerlink" title="安装测试(Installing Testing)"></a>安装测试(Installing Testing)</h3><p>安装测试即对于需要安装的软件的测试，保证软件的安装包能正常安装部署，需要考虑到系统版本，环境依赖等因素。</p>
+<h3 id="兼容性测试-Compatibility-Testing"><a href="#兼容性测试-Compatibility-Testing" class="headerlink" title="兼容性测试(Compatibility Testing)"></a>兼容性测试(Compatibility Testing)</h3><p>软件兼容性测试是指检查软件之间能否正确地进行交互和共享信息。<br>随着用户对来自各种类型软件之间共享数据能力和充分利用空间同时执行多个程序能力的要求，测试软件之间能否协作变得越来越重要。<br>软件兼容性测试工作的目标是保证软件按照用户期望的方式进行交互。</p>
+<h2 id="其它测试分类"><a href="#其它测试分类" class="headerlink" title="其它测试分类"></a>其它测试分类</h2><h3 id="冒烟测试-Smoke-Testing"><a href="#冒烟测试-Smoke-Testing" class="headerlink" title="冒烟测试(Smoke Testing)"></a>冒烟测试(Smoke Testing)</h3><p>冒烟测试目的是确认软件基本功能正常，冒烟测试的执行者是版本编译人员。</p>
+<p>现在基本执行对象为测试人员，在正规测试一个新版本之前，投入较少的人力和时间验证基本功能，通过则测试准入。</p>
+<p>我忘记有一个很形象的比喻，据说最早在硬件测试中，对测试样品通电之后，如果直接冒烟了，那么说明这个样品直接不合格，不需要后续的测试了，打回重做。</p>
+<h3 id="随机测试-Ad-hoc-Testing"><a href="#随机测试-Ad-hoc-Testing" class="headerlink" title="随机测试(Ad-hoc Testing)"></a>随机测试(Ad-hoc Testing)</h3><p>随机测试主要是根据测试者的经验对软件进行功能和性能抽查。</p>
+<p>根据测试说明书执行用例测试的重要补充手段，是保证测试覆盖完整性的有效方式和过程。</p>
+<p>随机测试主要是对被测软件的一些重要功能进行复测，也包括测试那些当前的测试用例(TestCase)没有覆盖到的部分。</p>
+<h3 id="探索性测试-Exploratory-testing"><a href="#探索性测试-Exploratory-testing" class="headerlink" title="探索性测试(Exploratory testing)"></a>探索性测试(Exploratory testing)</h3><p>探索性测试可以说是一种测试思维技术。它没有很多实际的测试方法、技术和工具，但是却是所有测试人员都应该掌握的一种测试思维方式。探索性强调测试人员的主观能动性，抛弃繁杂的测试计划和测试用例设计过程，强调在碰到问题时及时改变测试策略。</p>
+<p>探索性测试自动化暂时无法代替。好的测试人员也无法被代替。</p>
+<h3 id="回归测试-Regression-Testing"><a href="#回归测试-Regression-Testing" class="headerlink" title="回归测试(Regression Testing)"></a>回归测试(Regression Testing)</h3><p>回归测试是指修改了旧代码后，重新进行测试以确认修改没有引入新的错误或导致其他代码产生错误。自动回归测试将大幅降低系统测试、维护升级等阶段的成本。</p>
+<p>在整个软件测试过程中占有很大的工作量比重，软件开发的各个阶段都会进行多次回归测试。通过选择正确的回归测试策略来改进回归测试的效率和有效性是很有意义的。</p>
+<h3 id="α-测试-Alpha-Testing"><a href="#α-测试-Alpha-Testing" class="headerlink" title="α 测试(Alpha Testing)"></a>α 测试(Alpha Testing)</h3><p>α 测试是由一个用户在开发环境下进行的测试，也可以是公司内部的用户在模拟实际操作环境下进行的测试。α 测试的目的是评价软件产品的 FLURPS(即功能、局域化、可使用性、可靠性、性能和支持)。</p>
+<p>大型通用软件，在正式发布前，通常需要执行 Alpha 和 Beta 测试。α 测试不能由程序员或测试员完成。</p>
+<h3 id="β-测试-Beta-Testing"><a href="#β-测试-Beta-Testing" class="headerlink" title="β 测试(Beta Testing)"></a>β 测试(Beta Testing)</h3><p>Beta 测试是一种验收测试。Beta 测试由软件的最终用户们在一个或多个客户场所进行。</p>
+<p><strong>α 测试与 Beta 测试的区别</strong>：Findyou</p>
+<p>测试的场所不同：Alpha 测试是指把用户请到开发方的场所来测试,beta 测试是指在一个或多个用户的场所进行的测试。</p>
+<p>Alpha 测试的环境是受开发方控制的,用户的数量相对比较少,时间比较集中。beta 测试的环境是不受开发方控制的,用户数量相对比较多,时间不集中。</p>
+<p>alpha 测试先于 beta 测试执行。通用的软件产品需要较大规模的 beta 测试,测试周期比较长。</p>
+<h2 id="测试分类的思维导图"><a href="#测试分类的思维导图" class="headerlink" title="测试分类的思维导图"></a>测试分类的思维导图</h2><p>下面就用一张图来稍微总结一下，不一定完全准确，就当参考一下吧。</p>
+<p><img src="/img/post/2018/11/2018-11-13-TestCategories.jpg" alt="TestCategoriesMind"></p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>软件测试的分类可以从许多角度切入，主要的分类了解了就差不多了，具体的可以针对性的学习。</p>
+<p>参考：</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/findyou/p/6480411.html">软件测试概念及分类整理汇总</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/chaosmax/article/details/71617807">软件测试的定义与分类</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_35867537/article/details/77477775">软件测试分类及测试中三个主要概念</a></p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>Software Test Categories</p><p><a href="https://bearfly1990.github.io/2018/11/13/2018/11/2018-11-13-TestCategories/">https://bearfly1990.github.io/2018/11/13/2018/11/2018-11-13-TestCategories/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>BF</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2018-11-13</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2024-03-31</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/test/">test</a></div><div class="sharethis-inline-share-buttons"></div><script src="http://localhost:4000" defer></script></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2018/11/15/2018/11/2018-11-15-YAML/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">YAML</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2018/11/10/2018/11/2018-11-10-PyRestfulAPIDoc/"><span class="level-item">RESTful API Doc</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/mybear.jpg" alt="bearfly1990"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">bearfly1990</p><p class="is-size-6 is-block">有熊在飞</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>HZ, China</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Entradas</p><a href="/archives/"><p class="title">98</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categorías</p><a href="/categories/"><p class="title">5</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Etiquetas</p><a href="/tags/"><p class="title">121</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/bearfly1990" target="_blank" rel="me noopener">SEGUIR</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/bearfly1990"><i class="fab fa-github"></i></a></div></div></div><!--!--></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/favicon.ico" alt="BF Blog" height="28"></a><p class="is-size-7"><span>&copy; 2025 BF</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Volver arriba" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "Este sitio web utiliza cookies para mejorar su experiencia.",
+          dismiss: "¡Entendido!",
+          allow: "Permitir cookies",
+          deny: "Descenso",
+          link: "Aprende más",
+          policy: "Política de cookies",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Teclea algo..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Teclea algo...","untitled":"(Sin título)","posts":"Entradas","pages":"Páginas","categories":"Categorías","tags":"Etiquetas"});
+        });</script></body></html>

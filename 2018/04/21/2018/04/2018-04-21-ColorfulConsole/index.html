@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Text Color Of Console - BF Blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="BF Blog"><meta name="msapplication-TileImage" content="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="BF Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="Console输出彩色字体在平常工作中会使用到console输出日志或者字符，如果有不同的颜色的话就非常直观。比如Error用红色显示，Warn用黄色显示，Info用默认的白色，Success或者Pass的话就使用绿色。 终端的字符颜色是用转义序列控制的，是文本模式下的系统显示功能，和具体的语言无关,只要终端支持就好。转义序列是以ESC开头,用\033来表示（ESC的ASCII码八进制:033,"><meta property="og:type" content="blog"><meta property="og:title" content="Text Color Of Console"><meta property="og:url" content="https://bearfly1990.github.io/2018/04/21/2018/04/2018-04-21-ColorfulConsole/"><meta property="og:site_name" content="BF Blog"><meta property="og:description" content="Console输出彩色字体在平常工作中会使用到console输出日志或者字符，如果有不同的颜色的话就非常直观。比如Error用红色显示，Warn用黄色显示，Info用默认的白色，Success或者Pass的话就使用绿色。 终端的字符颜色是用转义序列控制的，是文本模式下的系统显示功能，和具体的语言无关,只要终端支持就好。转义序列是以ESC开头,用\033来表示（ESC的ASCII码八进制:033,"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://bearfly1990.github.io/img/bf/camera_01.jpg"><meta property="article:published_time" content="2018-04-20T16:00:00.000Z"><meta property="article:modified_time" content="2024-03-30T17:22:21.942Z"><meta property="article:author" content="BF"><meta property="article:tag" content="console"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://bearfly1990.github.io/img/bf/camera_01.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://bearfly1990.github.io/2018/04/21/2018/04/2018-04-21-ColorfulConsole/"},"headline":"Text Color Of Console","image":["https://bearfly1990.github.io/img/bf/camera_01.jpg"],"datePublished":"2018-04-20T16:00:00.000Z","dateModified":"2024-03-30T17:22:21.942Z","author":{"@type":"Person","name":"BF"},"publisher":{"@type":"Organization","name":"BF Blog","logo":{"@type":"ImageObject","url":"https://bearfly1990.github.io/img/favicon.ico"}},"description":"Console输出彩色字体在平常工作中会使用到console输出日志或者字符，如果有不同的颜色的话就非常直观。比如Error用红色显示，Warn用黄色显示，Info用默认的白色，Success或者Pass的话就使用绿色。 终端的字符颜色是用转义序列控制的，是文本模式下的系统显示功能，和具体的语言无关,只要终端支持就好。转义序列是以ESC开头,用\\033来表示（ESC的ASCII码八进制:033,"}</script><link rel="canonical" href="https://bearfly1990.github.io/2018/04/21/2018/04/2018-04-21-ColorfulConsole/"><link rel="icon" href="/img/favicon.ico"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/favicon.ico" alt="BF Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/bearfly1990"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Buscar" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-image"><span class="image is-7by3"><img class="fill" src="/img/bf/camera_01.jpg" alt="Text Color Of Console"></span></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Publicado hace&nbsp;<time dateTime="2018-04-20T16:00:00.000Z" title="2018/4/21 00:00:00">2018-04-21</time></span><span class="level-item">Actualizado hace&nbsp;<time dateTime="2024-03-30T17:22:21.942Z" title="2024/3/31 01:22:21">2024-03-31</time></span><span class="level-item"> BF </span><span class="level-item">5 分钟 de lectura (Aproximadamente 760 palabras)</span></div></div><h1 class="title is-3 is-size-4-mobile">Text Color Of Console</h1><div class="content"><h2 id="Console输出彩色字体"><a href="#Console输出彩色字体" class="headerlink" title="Console输出彩色字体"></a>Console输出彩色字体</h2><p>在平常工作中会使用到console输出日志或者字符，如果有不同的颜色的话就非常直观。<br>比如Error用红色显示，Warn用黄色显示，Info用默认的白色，Success或者Pass的话就使用绿色。</p>
+<p>终端的字符颜色是用转义序列控制的，是文本模式下的系统显示功能，和具体的语言无关,只要终端支持就好。转义序列是以ESC开头,用\033来表示（ESC的ASCII码八进制:033, 十进制:27, 十六进制:1B）。</p>
+<span id="more"></span>
+<h3 id="书写格式："><a href="#书写格式：" class="headerlink" title="书写格式："></a>书写格式：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\033[%showMode%;%fontcolor%;%bgcolor%m %content%\033[0m</span><br></pre></td></tr></table></figure>
+<p>开头部分<code>\033[parm1;parm2;parm3 m</code>：<br>注意：开头部分的三个参数：显示方式，前景色，背景色是可选参数，他们对应的值都是不一样的，所以可以只写一个，顺序也没有要求，但是建议按照默认的格式规范书写。</p>
+<p>结尾可以省略，但是为了书写规范，建议<code>\033[*;*;*m</code>开头，<code>\033[0m</code>结尾。</p>
+<p>数值表示的参数含义：</p>
+<p>| 显示方式       | 前景色      | 背景色    |</p>
+<p>| ————- | ———- | ———- |<br>| 0（默认值）    | 30（黑色）  | 40（黑色）  |<br>| 1（高亮）      | 31（红色）  | 41（红色）  |<br>| 4（下划线）    | 32（绿色）  | 42（绿色）  |<br>| 5（闪烁）      | 33（黄色）  | 43（黄色）  |<br>| 7（反显）      | 34（蓝色）  | 44（蓝色）  |<br>| 22（非粗体）   | 35（洋 红） | 45（洋 红） |<br>| 24（非下划线） | 36（青色）  | 46（青色）  |<br>| 25（非闪烁）   | 37（白色）  | 47（白色）  |<br>| 27（非反显）   |    -       |     -      |</p>
+<p>常见开头格式：</p>
+<table>
+<thead>
+<tr>
+<th>开头格式</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>\033[0m</td>
+<td>默认字体正常显示，不高亮</td>
+</tr>
+<tr>
+<td>\033[32;0m</td>
+<td>红色字体正常显示</td>
+</tr>
+<tr>
+<td>\033[1;32;40m</td>
+<td>显示方式: 高亮    字体前景色：绿色  背景色：黑色</td>
+</tr>
+<tr>
+<td>\033[1;31;40m</td>
+<td>显示方式: 高亮    字体前景色：红色  背景色：黑色</td>
+</tr>
+<tr>
+<td>\033[1;35;40m</td>
+<td>显示方式: 高亮    字体前景色：洋红  背景色：黑色</td>
+</tr>
+<tr>
+<td>\033[1;33;40m</td>
+<td>显示方式: 高亮    字体前景色：黄色  背景色：黑色</td>
+</tr>
+</tbody></table>
+<p>Python实例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\033[1;35;40m 高亮洋红背景黑 \033[0m&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>Java实例:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">ANSI_RESET</span> <span class="operator">=</span> <span class="string">&quot;\u001B[0m&quot;</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">ANSI_BLACK</span> <span class="operator">=</span> <span class="string">&quot;\u001B[30m&quot;</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">ANSI_RED</span> <span class="operator">=</span> <span class="string">&quot;\u001B[31m&quot;</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">ANSI_GREEN</span> <span class="operator">=</span> <span class="string">&quot;\u001B[32m&quot;</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">ANSI_YELLOW</span> <span class="operator">=</span> <span class="string">&quot;\u001B[33m&quot;</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">ANSI_BLUE</span> <span class="operator">=</span> <span class="string">&quot;\u001B[34m&quot;</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">ANSI_PURPLE</span> <span class="operator">=</span> <span class="string">&quot;\u001B[35m&quot;</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">ANSI_CYAN</span> <span class="operator">=</span> <span class="string">&quot;\u001B[36m&quot;</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">ANSI_WHITE</span> <span class="operator">=</span> <span class="string">&quot;\u001B[37m&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">ANSI_BLACK_BACKGROUND</span> <span class="operator">=</span> <span class="string">&quot;\u001B[40m&quot;</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">ANSI_RED_BACKGROUND</span> <span class="operator">=</span> <span class="string">&quot;\u001B[41m&quot;</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">ANSI_GREEN_BACKGROUND</span> <span class="operator">=</span> <span class="string">&quot;\u001B[42m&quot;</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">ANSI_YELLOW_BACKGROUND</span> <span class="operator">=</span> <span class="string">&quot;\u001B[43m&quot;</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">ANSI_BLUE_BACKGROUND</span> <span class="operator">=</span> <span class="string">&quot;\u001B[44m&quot;</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">ANSI_PURPLE_BACKGROUND</span> <span class="operator">=</span> <span class="string">&quot;\u001B[45m&quot;</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">ANSI_CYAN_BACKGROUND</span> <span class="operator">=</span> <span class="string">&quot;\u001B[46m&quot;</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">ANSI_WHITE_BACKGROUND</span> <span class="operator">=</span> <span class="string">&quot;\u001B[47m&quot;</span>;</span><br><span class="line"></span><br><span class="line">System.out.println(ANSI_GREEN_BACKGROUND + <span class="string">&quot;This text has a green background but default text!&quot;</span> + ANSI_RESET);</span><br><span class="line">System.out.println(ANSI_RED + <span class="string">&quot;This text has red text but a default background!&quot;</span> + ANSI_RESET);</span><br><span class="line">System.out.println(ANSI_GREEN_BACKGROUND + ANSI_RED + <span class="string">&quot;This text has a green background and red text!&quot;</span> + ANSI_RESET);</span><br></pre></td></tr></table></figure>
+</div><div class="article-licensing box"><div class="licensing-title"><p>Text Color Of Console</p><p><a href="https://bearfly1990.github.io/2018/04/21/2018/04/2018-04-21-ColorfulConsole/">https://bearfly1990.github.io/2018/04/21/2018/04/2018-04-21-ColorfulConsole/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>BF</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2018-04-21</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2024-03-31</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/console/">console</a></div><div class="sharethis-inline-share-buttons"></div><script src="http://localhost:4000" defer></script></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2018/04/21/2018/04/2018-04-21-ManageTxtFiles/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">Manage txt files</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2018/04/20/2018/04/2018-04-20-CSVLogAnalysis/"><span class="level-item">Analyse CSV log</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/mybear.jpg" alt="bearfly1990"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">bearfly1990</p><p class="is-size-6 is-block">有熊在飞</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>HZ, China</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Entradas</p><a href="/archives/"><p class="title">98</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categorías</p><a href="/categories/"><p class="title">5</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Etiquetas</p><a href="/tags/"><p class="title">121</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/bearfly1990" target="_blank" rel="me noopener">SEGUIR</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/bearfly1990"><i class="fab fa-github"></i></a></div></div></div><!--!--></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/favicon.ico" alt="BF Blog" height="28"></a><p class="is-size-7"><span>&copy; 2025 BF</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Volver arriba" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "Este sitio web utiliza cookies para mejorar su experiencia.",
+          dismiss: "¡Entendido!",
+          allow: "Permitir cookies",
+          deny: "Descenso",
+          link: "Aprende más",
+          policy: "Política de cookies",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Teclea algo..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Teclea algo...","untitled":"(Sin título)","posts":"Entradas","pages":"Páginas","categories":"Categorías","tags":"Etiquetas"});
+        });</script></body></html>

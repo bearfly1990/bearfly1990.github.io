@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Java Developement Manual - BF Blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="BF Blog"><meta name="msapplication-TileImage" content="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="BF Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="Java 开发手册(alibaba)闲来无聊，手打一份手册，当做自己在网络的备份，方便以后查看，顺便当练习打字了，哈哈哈哈，我的五笔都生疏了，嘿嘿。"><meta property="og:type" content="blog"><meta property="og:title" content="Java Developement Manual"><meta property="og:url" content="https://bearfly1990.github.io/2018/11/17/2018/11/2018-11-17-JavaDevManual/"><meta property="og:site_name" content="BF Blog"><meta property="og:description" content="Java 开发手册(alibaba)闲来无聊，手打一份手册，当做自己在网络的备份，方便以后查看，顺便当练习打字了，哈哈哈哈，我的五笔都生疏了，嘿嘿。"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://bearfly1990.github.io/img/bf/coffee_01.jpg"><meta property="article:published_time" content="2018-11-16T16:00:00.000Z"><meta property="article:modified_time" content="2024-03-30T17:22:21.952Z"><meta property="article:author" content="BF"><meta property="article:tag" content="java"><meta property="article:tag" content="manual"><meta property="article:tag" content="alibaba"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://bearfly1990.github.io/img/bf/coffee_01.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://bearfly1990.github.io/2018/11/17/2018/11/2018-11-17-JavaDevManual/"},"headline":"Java Developement Manual","image":["https://bearfly1990.github.io/img/bf/coffee_01.jpg"],"datePublished":"2018-11-16T16:00:00.000Z","dateModified":"2024-03-30T17:22:21.952Z","author":{"@type":"Person","name":"BF"},"publisher":{"@type":"Organization","name":"BF Blog","logo":{"@type":"ImageObject","url":"https://bearfly1990.github.io/img/favicon.ico"}},"description":"Java 开发手册(alibaba)闲来无聊，手打一份手册，当做自己在网络的备份，方便以后查看，顺便当练习打字了，哈哈哈哈，我的五笔都生疏了，嘿嘿。"}</script><link rel="canonical" href="https://bearfly1990.github.io/2018/11/17/2018/11/2018-11-17-JavaDevManual/"><link rel="icon" href="/img/favicon.ico"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/favicon.ico" alt="BF Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/bearfly1990"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Buscar" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-image"><span class="image is-7by3"><img class="fill" src="/img/bf/coffee_01.jpg" alt="Java Developement Manual"></span></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Publicado hace&nbsp;<time dateTime="2018-11-16T16:00:00.000Z" title="2018/11/17 00:00:00">2018-11-17</time></span><span class="level-item">Actualizado hace&nbsp;<time dateTime="2024-03-30T17:22:21.952Z" title="2024/3/31 01:22:21">2024-03-31</time></span><span class="level-item"> BF </span><span class="level-item">30 分钟 de lectura (Aproximadamente 4476 palabras)</span></div></div><h1 class="title is-3 is-size-4-mobile">Java Developement Manual</h1><div class="content"><h1 id="Java-开发手册-alibaba"><a href="#Java-开发手册-alibaba" class="headerlink" title="Java 开发手册(alibaba)"></a>Java 开发手册(alibaba)</h1><p>闲来无聊，手打一份手册，当做自己在网络的备份，方便以后查看，顺便当练习打字了，哈哈哈哈，我的五笔都生疏了，嘿嘿。</p>
+<span id="more"></span>
+<h2 id="第一章-编程规约"><a href="#第一章-编程规约" class="headerlink" title="第一章 编程规约"></a>第一章 编程规约</h2><p>本章是传统意义上的代码规范，包括变量名、代码风格、控制语句、代码注释等基本的编程习惯，以及从高并发场景中提炼出来的集合处理技巧和并发多线程的注意事项。</p>
+<h3 id="1-1-命名风格"><a href="#1-1-命名风格" class="headerlink" title="1.1 命名风格"></a>1.1 命名风格</h3><h4 id="【强制】"><a href="#【强制】" class="headerlink" title="【强制】"></a>【强制】</h4><ul>
+<li><p>代码中的命名均不能以下画线或美元符号开始，也不能以下画线或美元符号结束。</p>
+</li>
+<li><p>代码中的命名严禁使用拼与英文混合的方式，更不允许直接使用中文的方式。</p>
+</li>
+<li><p>类名使用 UpperCamelCamel 风格， 但 DO&#x2F;BO&#x2F;DTO&#x2F;VO&#x2F;AO&#x2F;PO 等情形例外。</p>
+</li>
+<li><p>方法名、参数名、成员变量 、局部变量都统一使用 lowerCamelCase 风格，必须遵从驼峰的形式。</p>
+</li>
+<li><p>常量命名全部大写，单词间用下画线隔开，力求语义表达完整清楚，不要嫌名字长。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">e.g. MAX_STOCK_COUNT / PRIZE_NUMBER_EVERYDAY</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>抽象类名使用 Abstract 或 Base 开头；异常类使用 Exception 结尾；测试类命名要以它测试的类名开始，以 Test 结尾。</p>
+</li>
+<li><p>类型与中括号之间无空格相连定义数组。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">e.g. int[] arrayDemo;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>POJO 类中布尔类型的变量都不要加 is 前缀，否则部分框架解析会引起序列化错误。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">e.g. Boolean isDeleted, it&#x27;s method is isDeleted(), </span><br><span class="line">Error happened when RPC Framwork try to get property name deleted)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>包名统一使用小写，点分隔符之间有且仅有一个自然语义的英语单词。包名统一使用单数形式，但是类名如果有复数含义，则类名可以使用复数形式。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">e.g. com.alibaba.ai.util.MessageUtils</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>杜绝完全不规范的缩写，避免词不达义。</p>
+</li>
+</ul>
+<h4 id="【推荐】"><a href="#【推荐】" class="headerlink" title="【推荐】"></a>【推荐】</h4><ul>
+<li><p>为了达到代码自解释的目标，任何自定义编程元素在命名时，使用尽量完整的单词组合来表达其意。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">e.g 在JDK中，对某个对象引用的volatile字段进行原子更新的类名为： AtomicReferenceFieldUpdater。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果模块、接口、类、方法使用了设计模式 ，应在命名时体现出具体模式。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public class OrderFactory;</span><br><span class="line">public class LoginProxy;</span><br><span class="line">public class ResourceObserver;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>接口类中的方法和属性不要加任何修饰符号(public 也不要加)， 保持代码的简洁性，并加上有效的 Javadoc 注释。尽量不要在接口里定义变量，如果一定要定义变量，必须是与接口方法相关的，并且是整个应用的基础常量。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">接口方法签名：void commit();</span><br><span class="line">接口基础常量：String COMPANY = &quot;alibaba&quot;;</span><br><span class="line">c.g. public abstract void commit();</span><br><span class="line">如果JDK8中接口允许有默认实现，那么这个default方法，是对所有实现类都有价值的默认实现。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>接口和实现类的命名有两套规则： </p>
+<ul>
+<li>【强制】对于 Service 和 DAO 类，基于 SOA 的理念，暴露出来的服务一定是接口，内部的实现类用以 Impl 后缀与接口区别。<code>e.g. CacheServiceImpl实现CacheService接口</code> </li>
+<li>【推荐】如果是形容能力的接口名称，取对应的形容词为接口名（通常是-able 的形式）。<code>e.g. AbstractTranslator 实现 Translatable</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><ul>
+<li><p>枚举类名建议带上 Enum 后缀，枚举成员名称需要全大写， 单词间用下画线隔开。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">枚举其实就是特殊的常量类，且构造方法被默认强制为私有。</span><br><span class="line">e.g.枚举名字为ProcessStatusEnum的成员名称：SUCCESS / UNKNOWN_REASON</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>各层命名规约：</p>
+<ul>
+<li>Service&#x2F;DAO 层方法命名规约如下：<ul>
+<li>获取单个对象的方法用 get 作为前缀。</li>
+<li>获取多个对象的方法用 list 作为前缀。</li>
+<li>获取统计值的方法用 count 作为前缀。</li>
+<li>插入的方法用 sava &#x2F; insert 作为前缀。</li>
+<li>删除的方法用 remove &#x2F; delete 作为前缀。</li>
+<li>修改的方法用 update 作为前缀</li>
+</ul>
+</li>
+<li>领域模型命名规约如下:<ul>
+<li>数据对象： xxxDO, xxx 为数据表名。</li>
+<li>数据传输对象： xxxDTO, xxx 为业务领域相关的名称。</li>
+<li>展示对象： xxxVO, xxx 一般为网页名称。</li>
+<li><code>POJO</code> 是 DO&#x2F;DTO&#x2F;BO&#x2F;VO 的统称，禁止命名成 xxx<code>POJO</code>。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-2-常量定义"><a href="#1-2-常量定义" class="headerlink" title="1.2 常量定义"></a>1.2 常量定义</h3><h4 id="强制"><a href="#强制" class="headerlink" title="强制"></a>强制</h4><ul>
+<li>不允许任何魔法值（即未经预先定义的常量）直接出现在代码中。</li>
+<li>long 或者 Long 初始赋值时，使用大写的<code>L</code>，不能是小写的<code>l</code>。小写的<code>l</code>容易跟数字<code>1</code>混淆，造成误解。</li>
+</ul>
+<h4 id="推荐"><a href="#推荐" class="headerlink" title="推荐"></a>推荐</h4><ul>
+<li>不要使用一个常量类维护所有常量，要按常量功能进行归类，分开维护。</li>
+<li>常量的复用层次有 5 层：跨应用共享常量、应用内共享常量、子工程内共享常量、包内共享常量、类内共享常量。 - 跨应用共享常量：放置在二方库中，通常是在 client.jar 中的 constant 目录下。 - 应用内共享常量：旋转在一方库中，通常是在子模块中的 constant 目录下。 - 子工程内部共享常量：即在当前子工程的 constant 目录下。 - 包内共享常量：即在当前包下单独的 constant 目录下。 - 类内共享常量：直接在类内部以<code>private static final</code>的方式定义。</li>
+<li>如果变量值仅在一个范围内变化，则用 enum 类型来定义。如果存在名称之外的延伸属性，则使用 enum 类型，下面正例的数字就是延伸信息，表示一年中的第几个季节。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public enum SeasonEnum &#123;</span><br><span class="line">    SPRINT(1), SUMMER(2), AUTUMN(3), WINTER(4);</span><br><span class="line">    private int seq;</span><br><span class="line">    SeasonEnum(int seq)&#123;</span><br><span class="line">        this.seq = seq;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="1-3-代码格式"><a href="#1-3-代码格式" class="headerlink" title="1.3 代码格式"></a>1.3 代码格式</h3><h4 id="强制-1"><a href="#强制-1" class="headerlink" title="强制"></a>强制</h4><ul>
+<li><p>大括号的使用约定。如果大括号内为空，则简洁地写成{}即可，也不需要换行；如果是非空代码，则： </p>
+<ul>
+<li>左大括号前不换行。 </li>
+<li>左大括号后换行。 </li>
+<li>右大括号前换行。 </li>
+<li>右大括号后还有 else 等代码刚不换行；</li>
+</ul>
+</li>
+<li><p>表示终止的右大括号必须换行。</p>
+</li>
+<li><p>左小括号和字符之间不出现空格；同样，右小括号和字符之间也不出现空格。</p>
+</li>
+<li><p>if &#x2F; for &#x2F; while &#x2F; switch &#x2F; do 等保留字与括号之间都必须加上空格。</p>
+</li>
+<li><p>任何二目、三目运算符的左右两边都需要加一个空格。采用 4 个空格缩进，禁止使用 Tab 控制符。</p>
+</li>
+<li><p>注释的双斜线与注释内容之间有且仅有一个空格。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args)&#123;</span><br><span class="line">    // 缩进4个空格</span><br><span class="line">    String say = &quot;hello&quot;;</span><br><span class="line">    // 运算符的左右必须有1个空格</span><br><span class="line">    int flag = 0;</span><br><span class="line">    // 关键字 if 与括号之间必须有 1 个空格，</span><br><span class="line">    // 括号内的 f 与左括号、0 与右括号之间不需要空格</span><br><span class="line">    if (flag == 0) &#123;</span><br><span class="line">        System.out.println(say);</span><br><span class="line">    &#125;</span><br><span class="line">    // 左大括号前加空格且不换行；左大括号后换行</span><br><span class="line">    if (flag == 1) ｛</span><br><span class="line">        System.out.println(&quot;world&quot;);</span><br><span class="line">    // 右大括号前换行，右大括号后有else，不用换行</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        System.out.println(&quot;ok&quot;);</span><br><span class="line">    // 在右大括号后直接结束，则必须换行</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>单行字符数不超过 120 个，超出则需要换行，换行是遵循如下原则： </p>
+<ul>
+<li>第二行相对第一行缩进 4 个空格，从第三行开始，不再持续缩进，参考示例。 </li>
+<li>运算符与下文一起换行。 </li>
+<li>方法调用的点符号与下方一起换行。 </li>
+<li>方法调用中的多个参数需要换行时，在逗号后进行。 </li>
+<li>在括号前不要换行。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">StringBuffer sb = new StringBuffer();</span><br><span class="line">sb.append(&quot;you &quot;).append(&quot;are &quot;)...</span><br><span class="line">    .append(&quot;so &quot;)...</span><br><span class="line">    .append(&quot;kind!&quot;);</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>方法参数在定义和传入时，多个参数逗号后面必须加空格。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">method(&quot;one&quot;, &quot;two&quot;, &quot;three&quot;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>IDE 的 text file encoding 设置为 UTF-8；IDE 中文件的换行符使用 UNIX 格式， 不要使用 Windows 格式。</p>
+</li>
+</ul>
+<h4 id="推荐-1"><a href="#推荐-1" class="headerlink" title="推荐"></a>推荐</h4><ul>
+<li>没有必要增加若干空格来使某一行的字符与上一行对应位置的字符对齐。</li>
+<li>不同逻辑、不同语义、不同业务的代码之间插入一个空行分隔开来，以提升可读性。（没必要插入多个空行来隔开。）</li>
+</ul>
+<h3 id="OOP-规约"><a href="#OOP-规约" class="headerlink" title="OOP 规约"></a>OOP 规约</h3><h4 id="强制-2"><a href="#强制-2" class="headerlink" title="强制"></a>强制</h4><ul>
+<li><p>避免通过一个类的对象引用访问此类的静态变量或静态方法，造成无谓增加编译器解析成本，直接用类名来访问即可。</p>
+</li>
+<li><p>所以的覆写方法，必须加<code>@Override</code>注解</p>
+</li>
+<li><p>相同参数类型，相同业务含义，才可以使用 Java 的可变参数，避免使用 Object。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">可变参数必须放置在参数列表的最后（建议工程师们尽量不用可变参数编程）。</span><br><span class="line">public User listUsers(String type, Long... ids)&#123;...&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>对外部正在调用或者二方库依赖的接口，不允许修改方法接口，以避免对接口调用方产生影响。若接口过时，必须加 <code>@Deprecated</code>注解，并清晰地说明采用的新接口或者新服务是什么。</p>
+</li>
+<li><p>不能使用过时的类或方法。</p>
+</li>
+<li><p>Object 的 equals 方法容易抛空指针，应使用常量或者确定有值的对象来调用 equals。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">e.g. &quot;test&quot;.equals(object)</span><br><span class="line">c.g. object.equest(&quot;test&quot;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>所有相同类型的包装类对象之间值的比较，全部使用 equals 方法。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">对于 Integer var = ? 在 - 128~127范围内的赋值， </span><br><span class="line">Integer 对象是在IntegerCache.cache中产生 的。</span><br><span class="line">会复用已有对象， 这个区间内的Integer值可以直接使用 == 进行判断， </span><br><span class="line">但是这个区间外的所有数据， 都会在堆上产生，</span><br><span class="line">并不会利用已有对象。这是个大坑，推荐使用equals方法进行判断。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>关于基本数据类型与包装数据类型的使用标准如下：</p>
+<ul>
+<li>【强制】所有的<code>POJO</code>类属性必须使用包装数据类型。</li>
+<li>【强制】RPC 方法的返回值和参数必须使用包装数据类型。</li>
+<li>【推荐】所有的局部变量使用基本数据类型。</li>
+</ul>
+</li>
+<li><p>在定义 DO&#x2F;DTO&#x2F;VO 等 <code>POJO</code>类时，不要设定任何属性默认值。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">c.g. `POJO`类的gmtCreate默认值为 new Date();</span><br><span class="line">但是这个属性在数据提取时并没有置入具体值，</span><br><span class="line">在更新其它字段时又附带更新了此字段，导致创建时间被修改成当前时间。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>当序列化类新增属性时，请不要修改<code>serialVersionUID</code>字段，以避免反序列失败；如果完全不兼容升级， 避免反序列化混乱，那么请修改<code>serialVersionUID</code>值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">注意`serialVersionUID`不一致会抛出序列化运行时异常。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>构造方法里禁止加入任何业务逻辑，如果有初始化逻辑，请放在 init 方法中。</p>
+</li>
+<li><p><code>POJO</code>类必须写 <code>toString</code>方法。在使用 IDE 中的工具 <code>source&gt; generate toString</code>时， 如果继承了另一个<code>POJO</code>类，注意在前面加一下 super.toString。</p>
+</li>
+</ul>
+<h4 id="推荐-2"><a href="#推荐-2" class="headerlink" title="推荐"></a>推荐</h4><ul>
+<li>当使用索引访问用 String 的 split 方法等到的数组时，需在最后一个分隔符后面做有无内容的检查，否则会有抛 <code>IndexOutofBoundsException</code>的风险。</li>
+<li>当一个类有多个构造方法，或者多个同名方法时，这些方法应该按顺序放置在一起，便于阅读。</li>
+<li>类内方法定义的顺序是： 公有方法或保护方法＞私有方法＞ getter &#x2F; setter 方法。</li>
+<li>在 setter 方法中， 参数名称与类成员变量名称一致，this.成员名 &#x3D; 参数名。在 getter &#x2F; setter 方法中，不要增加业务逻辑， 否则会增加排查问题的难度。</li>
+<li>在循环体内，字符串的连接方式使用<code>StringBuilder</code>的<code>append</code>方法进行扩展。</li>
+<li>final 可以声明类、成员变量、方法及本地变量，下列情况使用 final 关键字： - 不允许被继承的类，如：<code>String</code>类。 - 不允许修改引用的域对象， 如：<code>POJO</code>类的域变量。 - 不允许被重写的方法，如： <code>POJO</code>类的 setter 方法。 - 不允许运行过程中重新赋值的局部变量。 - 避免上下文重复使用一个变量，使用 final 描述可以强制重新定义一个新变量，方便更好地进行重构</li>
+<li>慎用 Object 的 clone 方法来拷贝对象。</li>
+<li>类成员与方法访问控制从严： - 如果不外部直接通过 new 来创建对象，那么构造方法必须限制为<code>private</code>。 - 工具类不允许有 public 或 default 构造方法。 - 类非<code>static</code>成员变量并且与子类共享，必须限制为<code>protected</code>。 - 类非<code>static</code>成员变量并且仅在本类使用，必须限制为<code>private</code>。 - 类<code>static</code>成员变量如果公在本类使用，必须限制为<code>private</code>。 - 若是<code>static</code> 成员变量，必须考虑是否为<code>final</code>。 - 类成员方法只供类内部调用，必须限制为<code>private</code>。 - 类成员方法只对继承类公开，限制为<code>protected</code>.</li>
+</ul>
+<h3 id="1-5-集合处理"><a href="#1-5-集合处理" class="headerlink" title="1.5 集合处理"></a>1.5 集合处理</h3><h4 id="强制-3"><a href="#强制-3" class="headerlink" title="强制"></a>强制</h4><ul>
+<li><p>关于<code>hashCode</code> 和<code>equals</code>的处理，遵循如下规则： </p>
+</li>
+<li><p>只要重写 equals, 就必须重写 hashCode。 </p>
+</li>
+<li><p>因为 <code>Set</code>存储的是不重复的对象，依据 hashCode 和 equals 进行判断，所以 Set 存储的对象必须重写这两种方法。 </p>
+</li>
+<li><p>如果自定义对象作为<code>Map</code>的键，那么必须重写 hashCode 和 equals。</p>
+</li>
+<li><p><code>ArrayList</code>的<code>subList</code>结果不可强转成<code>ArrayList</code>, 否则会抛出<code>ClassCastExcpetion</code>异常，即</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.util.RandomAccessSubList cannot be cast to java.util.ArrayList`</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在<code>subList</code>场景中，高度注意对原集合元素个数的修改，会导致子列表的遍历、增加、删除均产生<code>ConcurrentModificationException</code>异常。</p>
+</li>
+<li><p>使用集合转数组的方法，必须使用集合的<code>toArray(T[] array)</code>，传入的是类型完全一样的数据，大小就是 list.size()。</p>
+</li>
+<li><p>在使用工具类<code>Arrays.asList()</code>把数组转换成集合时，不能使用其修改集合相关的方法，它的<code>add</code>&#x2F;<code>remove</code>&#x2F;<code>clear</code>方法会抛出<code>UnsupportedOperationException</code>异常。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">asList 的返回对象是一个Arrays内部类，并没有实现集合的修改方法。</span><br><span class="line">Arrays.asList体现的是适配器模式，只是转换接口，后台的数据仍是数组。</span><br><span class="line">String[] strs = new String[] &#123;&quot;you&quot;, &quot;are&quot;&#125;;</span><br><span class="line">List list = Arrays.asList(strs);</span><br><span class="line">scenario 1: list.add(&quot;chenxiong&quot;) 运行时异常。</span><br><span class="line">scenario 2: 如果 str[0] = &quot;xiche&quot;; 那么list.get(0)也会随之修改。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>泛型通配符<code>&lt;? extends T&gt;</code>用来接收返回的数据，此写法的泛型集合不能使用 add 方法，而<code>&lt;? super T&gt;</code>不能使用 get 方法， 因为 其作为接口调用赋值时易出错。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">扩展说一下 PECS(Producer Extends Consumer Super)原则：</span><br><span class="line">    第一，频繁往外读取内容的，适合用&lt;? extends T&gt;;</span><br><span class="line">    第二，经常往里插入的，适合用&lt;? super T&gt;。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>不要在<code>foreach</code>循环里进行元素的<code>remove</code>&#x2F;<code>add</code>操作。remove 元素请用 <code>Iterator</code>方式，如果并发操作，需要对 Iterator 对象加锁。</p>
+</li>
+<li><p>在 JDK7 及以上版本中， <code>Comparator</code>要满足如下三个条件，不然<code>Arrays.sort</code>, <code>Collections.sort</code>会报<code>IllegalArgumentException</code>异常。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">三个条件如下：</span><br><span class="line">    1) x, y 的比较结果和y, x的比较结果相反。</span><br><span class="line">    2) x&gt;y, y&gt;z, 则 x&gt;z。</span><br><span class="line">    3) x=y, 则x, z 比较结果和y, z比较结果相同</span><br><span class="line">c.g. 下例中没有处理相等的情况，交换两个对象判断结果并不互反，不符合第一个条件，在实际使用中可能会出现异常。</span><br><span class="line">    new Comparator&lt;Student&gt;()&#123;</span><br><span class="line">        @Override</span><br><span class="line">        public int compare(Student o1, Student o2)&#123;</span><br><span class="line">            return 01.getId() &gt; o2.getId() ? 1:-1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="推荐-3"><a href="#推荐-3" class="headerlink" title="推荐"></a>推荐</h4><ul>
+<li><p>在集合初始化时，指定集合初始值大小。</p>
+</li>
+<li><p>使用<code>entrySet</code>遍历<code>Map</code>类集合 K&#x2F;V， 而不是用 keySet 方式遍历。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">keySet 其实遍历了2次，一次是转为Iterator对象，</span><br><span class="line">另一次是从hashMap中取出key反对应的value。</span><br><span class="line">如果是JDK8，使用Map.foreach方法。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>高度注意<code>Map</code>类集合 K&#x2F;V 能不能存储 null 值的情况</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>集合类</th>
+<th>Key</th>
+<th>Value</th>
+<th>Super</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Hashtable</td>
+<td>no null</td>
+<td>no null</td>
+<td>Dictionary</td>
+<td>Thread Safe</td>
+</tr>
+<tr>
+<td>ConcurrentHashMap</td>
+<td>no null</td>
+<td>no null</td>
+<td>AbstractMap</td>
+<td>锁分段技术 (JDK8:CAS)</td>
+</tr>
+<tr>
+<td>TreeMap</td>
+<td>no null</td>
+<td>null</td>
+<td>AbstractMap</td>
+<td>Thread Unsafe</td>
+</tr>
+<tr>
+<td>HashMap</td>
+<td>null</td>
+<td>null</td>
+<td>AbstractMap</td>
+<td>Thread Unsafe</td>
+</tr>
+</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">由于HashMap的干扰，很多人认为ConcurrentHashMap是可以置入null值的，而事实上，存储null值会抛出NPE异常</span><br></pre></td></tr></table></figure>
+
+<h4 id="参考-1"><a href="#参考-1" class="headerlink" title="参考"></a>参考</h4><ul>
+<li><p>合理利用集合的有序性(sort)和稳定性(order)，避免集合的无序性(unsort)和不稳定性(unorder)带来的负面影响。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">有序性批遍历的结果是按某种比较规则依次排列的。</span><br><span class="line">稳定性指的是集合每次遍历的元素次序是一定的。如：</span><br><span class="line">ArrayList 是 order/unsort;</span><br><span class="line">HashMap 是unorder/unsort;</span><br><span class="line">TreeSet 是order/sort.</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>利用 Set 元素唯一的特性，可以快速对一个集合进行去重操作，避免使用 List 的 contains 方法进行遍历、对比、去重操作。</p>
+</li>
+</ul>
+<p>未完待续…└(^o^)┘</p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>Java Developement Manual</p><p><a href="https://bearfly1990.github.io/2018/11/17/2018/11/2018-11-17-JavaDevManual/">https://bearfly1990.github.io/2018/11/17/2018/11/2018-11-17-JavaDevManual/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>BF</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2018-11-17</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2024-03-31</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/java/">java</a><a class="link-muted mr-2" rel="tag" href="/tags/manual/">manual</a><a class="link-muted mr-2" rel="tag" href="/tags/alibaba/">alibaba</a></div><div class="sharethis-inline-share-buttons"></div><script src="http://localhost:4000" defer></script></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2018/11/18/2018/11/2018-11-18-Dokuwiki/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">Dokuwiki</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2018/11/15/2018/11/2018-11-15-YAML/"><span class="level-item">YAML</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/mybear.jpg" alt="bearfly1990"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">bearfly1990</p><p class="is-size-6 is-block">有熊在飞</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>HZ, China</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Entradas</p><a href="/archives/"><p class="title">98</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categorías</p><a href="/categories/"><p class="title">5</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Etiquetas</p><a href="/tags/"><p class="title">121</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/bearfly1990" target="_blank" rel="me noopener">SEGUIR</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/bearfly1990"><i class="fab fa-github"></i></a></div></div></div><!--!--></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/favicon.ico" alt="BF Blog" height="28"></a><p class="is-size-7"><span>&copy; 2025 BF</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Volver arriba" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "Este sitio web utiliza cookies para mejorar su experiencia.",
+          dismiss: "¡Entendido!",
+          allow: "Permitir cookies",
+          deny: "Descenso",
+          link: "Aprende más",
+          policy: "Política de cookies",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Teclea algo..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Teclea algo...","untitled":"(Sin título)","posts":"Entradas","pages":"Páginas","categories":"Categorías","tags":"Etiquetas"});
+        });</script></body></html>

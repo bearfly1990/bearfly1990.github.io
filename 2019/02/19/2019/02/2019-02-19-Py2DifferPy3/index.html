@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Difference between Python2 and Python3 - BF Blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="BF Blog"><meta name="msapplication-TileImage" content="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="BF Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="Python2.x 与 3​​.x 版本区别Python 的 3​​.0 版本，常被称为 Python 3000，或简称 Py3k。相对于 Python 的早期版本，这是一个较大的升级。 为了不带入过多的累赘，Python 3.0 在设计的时候没有考虑向下相容。 许多针对早期 Python 版本设计的程式都无法在 Python 3.0 上正常执行。 为了照顾现有程式，Python 2.6 作为一个"><meta property="og:type" content="blog"><meta property="og:title" content="Difference between Python2 and Python3"><meta property="og:url" content="https://bearfly1990.github.io/2019/02/19/2019/02/2019-02-19-Py2DifferPy3/"><meta property="og:site_name" content="BF Blog"><meta property="og:description" content="Python2.x 与 3​​.x 版本区别Python 的 3​​.0 版本，常被称为 Python 3000，或简称 Py3k。相对于 Python 的早期版本，这是一个较大的升级。 为了不带入过多的累赘，Python 3.0 在设计的时候没有考虑向下相容。 许多针对早期 Python 版本设计的程式都无法在 Python 3.0 上正常执行。 为了照顾现有程式，Python 2.6 作为一个"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://bearfly1990.github.io/img/bf/python.jpg"><meta property="article:published_time" content="2019-02-18T16:00:00.000Z"><meta property="article:modified_time" content="2024-03-30T17:22:21.959Z"><meta property="article:author" content="BF"><meta property="article:tag" content="python"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://bearfly1990.github.io/img/bf/python.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://bearfly1990.github.io/2019/02/19/2019/02/2019-02-19-Py2DifferPy3/"},"headline":"Difference between Python2 and Python3","image":["https://bearfly1990.github.io/img/bf/python.jpg"],"datePublished":"2019-02-18T16:00:00.000Z","dateModified":"2024-03-30T17:22:21.959Z","author":{"@type":"Person","name":"BF"},"publisher":{"@type":"Organization","name":"BF Blog","logo":{"@type":"ImageObject","url":"https://bearfly1990.github.io/img/favicon.ico"}},"description":"Python2.x 与 3​​.x 版本区别Python 的 3​​.0 版本，常被称为 Python 3000，或简称 Py3k。相对于 Python 的早期版本，这是一个较大的升级。 为了不带入过多的累赘，Python 3.0 在设计的时候没有考虑向下相容。 许多针对早期 Python 版本设计的程式都无法在 Python 3.0 上正常执行。 为了照顾现有程式，Python 2.6 作为一个"}</script><link rel="canonical" href="https://bearfly1990.github.io/2019/02/19/2019/02/2019-02-19-Py2DifferPy3/"><link rel="icon" href="/img/favicon.ico"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/favicon.ico" alt="BF Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/bearfly1990"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Buscar" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-image"><span class="image is-7by3"><img class="fill" src="/img/bf/python.jpg" alt="Difference between Python2 and Python3"></span></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Publicado hace&nbsp;<time dateTime="2019-02-18T16:00:00.000Z" title="2019/2/19 00:00:00">2019-02-19</time></span><span class="level-item">Actualizado hace&nbsp;<time dateTime="2024-03-30T17:22:21.959Z" title="2024/3/31 01:22:21">2024-03-31</time></span><span class="level-item"> BF </span><span class="level-item">16 分钟 de lectura (Aproximadamente 2408 palabras)</span></div></div><h1 class="title is-3 is-size-4-mobile">Difference between Python2 and Python3</h1><div class="content"><h1 id="Python2-x-与-3​​-x-版本区别"><a href="#Python2-x-与-3​​-x-版本区别" class="headerlink" title="Python2.x 与 3​​.x 版本区别"></a>Python2.x 与 3​​.x 版本区别</h1><p>Python 的 3​​.0 版本，常被称为 Python 3000，或简称 Py3k。相对于 Python 的早期版本，这是一个较大的升级。</p>
+<p>为了不带入过多的累赘，Python 3.0 在设计的时候没有考虑向下相容。</p>
+<p>许多针对早期 Python 版本设计的程式都无法在 Python 3.0 上正常执行。</p>
+<p>为了照顾现有程式，Python 2.6 作为一个过渡版本，基本使用了 Python 2.x 的语法和库，同时考虑了向 Python 3.0 的迁移，允许使用部分 Python 3.0 的语法与函数。</p>
+<p>新的 Python 程式建议使用 Python 3.0 版本的语法。</p>
+<p>除非执行环境无法安装 Python 3.0 或者程式本身使用了不支援 Python 3.0 的第三方库。目前不支援 Python 3.0 的第三方库有 Twisted, py2exe, PIL 等。</p>
+<p>大多数第三方库都正在努力地相容 Python 3.0 版本。即使无法立即使用 Python 3.0，也建议编写相容 Python 3.0 版本的程式，然后使用 Python 2.6, Python 2.7 来执行。</p>
+<p>Python 3.0 的变化主要在以下几个方面:</p>
+<span id="more"></span>
+<h2 id="print-函数"><a href="#print-函数" class="headerlink" title="print 函数"></a>print 函数</h2><p>print 语句没有了，取而代之的是 print()函数。 Python 2.6 与 Python 2.7 部分地支持这种形式的 print 语法。在 Python 2.6 与 Python 2.7 里面，以下三种形式是等价的：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span> <span class="string">&quot;fish&quot;</span></span><br><span class="line"><span class="built_in">print</span> (<span class="string">&quot;fish&quot;</span>) <span class="comment">#注意print后面有个空格</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;fish&quot;</span>) <span class="comment">#print()不能带有任何其它参数</span></span><br></pre></td></tr></table></figure>
+
+<p>然而，Python 2.6 实际已经支持新的 print()语法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> print_function</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;fish&quot;</span>, <span class="string">&quot;panda&quot;</span>, sep=<span class="string">&#x27;, &#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Unicode"><a href="#Unicode" class="headerlink" title="Unicode"></a>Unicode</h2><p>Python 2 有 ASCII str() 类型，unicode() 是单独的，不是 byte 类型。</p>
+<p>现在， 在 Python 3，我们最终有了 Unicode (utf-8) 字符串，以及一个字节类：byte 和 bytearrays。</p>
+<p>由于 Python3.X 源码文件默认使用 utf-8 编码，这就使得以下代码是合法的：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>中国 = <span class="string">&#x27;china&#x27;</span></span><br><span class="line">&gt;&gt;&gt;<span class="built_in">print</span>(中国)</span><br><span class="line">china</span><br></pre></td></tr></table></figure>
+
+<p>Python 2.x</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">str</span> = <span class="string">&quot;我爱北京天安门&quot;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">str</span></span><br><span class="line"><span class="string">&#x27;\xe6\x88\x91\xe7\x88\xb1\xe5\x8c\x97\xe4\xba\xac\xe5\xa4\xa9\xe5\xae\x89\xe9\x97\xa8&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">str</span> = <span class="string">u&quot;我爱北京天安门&quot;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">str</span></span><br><span class="line"><span class="string">u&#x27;\u6211\u7231\u5317\u4eac\u5929\u5b89\u95e8&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>Python 3.x</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">str</span> = <span class="string">&quot;我爱北京天安门&quot;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">str</span></span><br><span class="line"><span class="string">&#x27;我爱北京天安门&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="除法运算"><a href="#除法运算" class="headerlink" title="除法运算"></a>除法运算</h2><p>Python 中的除法较其它语言显得非常高端，有套很复杂的规则。Python 中的除法有两个运算符，&#x2F;和&#x2F;&#x2F;</p>
+<p>首先来说&#x2F;除法:</p>
+<p>在 python 2.x 中&#x2F;除法就跟我们熟悉的大多数语言，比如 Java 啊 C 啊差不多，整数相除的结果是一个整数，把小数部分完全忽略掉，浮点数除法会保留小数点的部分得到一个浮点数的结果。</p>
+<p>在 python 3.x 中&#x2F;除法不再这么做了，对于整数之间的相除，结果也会是浮点数。</p>
+<p>Python 2.x:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">1</span> / <span class="number">2</span></span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">1.0</span> / <span class="number">2.0</span></span><br><span class="line"><span class="number">0.5</span></span><br></pre></td></tr></table></figure>
+
+<p>Python 3.x:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">1</span>/<span class="number">2</span></span><br><span class="line"><span class="number">0.5</span></span><br></pre></td></tr></table></figure>
+
+<p>而对于&#x2F;&#x2F;除法，这种除法叫做 floor 除法，会对除法的结果自动进行一个 floor 操作，在 python 2.x 和 python 3.x 中是一致的。</p>
+<p>python 2.x:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>-<span class="number">1</span> // <span class="number">2</span></span><br><span class="line">-<span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>python 3.x:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>-<span class="number">1</span> // <span class="number">2</span></span><br><span class="line">-<span class="number">1</span></span><br><span class="line">注意的是并不是舍弃小数部分，而是执行 floor 操作，如果要截取整数部分，那么需要使用 math 模块的 trunc 函数</span><br></pre></td></tr></table></figure>
+
+<p>python 3.x:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> math</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>math.trunc(<span class="number">1</span> / <span class="number">2</span>)</span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>math.trunc(-<span class="number">1</span> / <span class="number">2</span>)</span><br><span class="line"><span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><p>在 Python 3 中处理异常也轻微的改变了，在 Python 3 中我们现在使用 as 作为关键词。</p>
+<p>捕获异常的语法由 except exc, var 改为 except exc as var。</p>
+<p>使用语法 except (exc1, exc2) as var 可以同时捕获多种类别的异常。 Python 2.6 已经支持这两种语法。</p>
+<ol>
+<li>在 2.x 时代，所有类型的对象都是可以被直接抛出的，在 3.x 时代，只有继承自 BaseException 的对象才可以被抛出。</li>
+<li>2.x raise 语句使用逗号将抛出对象类型和参数分开，3.x 取消了这种奇葩的写法，直接调用构造函数抛出对象即可。<br>在 2.x 时代，异常在代码中除了表示程序错误，还经常做一些普通控制结构应该做的事情，在 3.x 中可以看出，设计者让异常变的更加专一，只有在错误发生的情况才能去用异常捕获语句来处理。</li>
+</ol>
+<h2 id="xrange"><a href="#xrange" class="headerlink" title="xrange"></a>xrange</h2><p>在 Python 2 中 xrange() 创建迭代对象的用法是非常流行的。比如： for 循环或者是列表&#x2F;集合&#x2F;字典推导式。</p>
+<p>这个表现十分像生成器（比如。”惰性求值”）。但是这个 xrange-iterable 是无穷的，意味着你可以无限遍历。</p>
+<p>由于它的惰性求值，如果你不得仅仅不遍历它一次，xrange() 函数 比 range() 更快（比如 for 循环）。尽管如此，对比迭代一次，不建议你重复迭代多次，因为生成器每次都从头开始。</p>
+<p>在 Python 3 中，range() 是像 xrange() 那样实现以至于一个专门的 xrange() 函数都不再存在（在 Python 3 中 xrange() 会抛出命名异常）。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> timeit</span><br><span class="line"></span><br><span class="line">n = <span class="number">10000</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">test_range</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">test_xrange</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> xrange(n):</span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<p>Python 2</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span> <span class="string">&#x27;Python&#x27;</span>, python_version()</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span> <span class="string">&#x27;\ntiming range()&#x27;</span></span><br><span class="line">%timeit test_range(n)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span> <span class="string">&#x27;\n\ntiming xrange()&#x27;</span></span><br><span class="line">%timeit test_xrange(n)</span><br><span class="line"></span><br><span class="line">Python <span class="number">2.7</span><span class="number">.6</span></span><br><span class="line"></span><br><span class="line">timing <span class="built_in">range</span>()</span><br><span class="line"><span class="number">1000</span> loops, best of <span class="number">3</span>: <span class="number">433</span> µs per loop</span><br><span class="line"></span><br><span class="line">timing xrange()</span><br><span class="line"><span class="number">1000</span> loops, best of <span class="number">3</span>: <span class="number">350</span> µs per loop</span><br></pre></td></tr></table></figure>
+
+<p>Python 3</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Python&#x27;</span>, python_version())</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;\ntiming range()&#x27;</span>)</span><br><span class="line">%timeit test_range(n)</span><br><span class="line"></span><br><span class="line">Python <span class="number">3.4</span><span class="number">.1</span></span><br><span class="line"></span><br><span class="line">timing <span class="built_in">range</span>()</span><br><span class="line"><span class="number">1000</span> loops, best of <span class="number">3</span>: <span class="number">520</span> µs per loop</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(xrange(<span class="number">10</span>))</span><br><span class="line">---------------------------------------------------------------------------</span><br><span class="line">NameError                                 Traceback (most recent call last)</span><br><span class="line">&lt;ipython-<span class="built_in">input</span>-<span class="number">5</span>-5d8f9b79ea70&gt; <span class="keyword">in</span> &lt;module&gt;()</span><br><span class="line">----&gt; <span class="number">1</span> <span class="built_in">print</span>(xrange(<span class="number">10</span>))</span><br><span class="line"></span><br><span class="line">NameError: name <span class="string">&#x27;xrange&#x27;</span> <span class="keyword">is</span> <span class="keyword">not</span> defined</span><br></pre></td></tr></table></figure>
+
+<h2 id="八进制字面量表示"><a href="#八进制字面量表示" class="headerlink" title="八进制字面量表示"></a>八进制字面量表示</h2><p>八进制数必须写成 0o777，原来的形式 0777 不能用了；二进制必须写成 0b111。</p>
+<p>新增了一个 bin()函数用于将一个整数转换成二进制字串。 Python 2.6 已经支持这两种语法。</p>
+<p>在 Python 3.x 中，表示八进制字面量的方式只有一种，就是 0o1000。</p>
+<p>python 2.x</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">0o1000</span></span><br><span class="line"><span class="number">512</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">0</span>1000</span><br><span class="line"><span class="number">512</span></span><br></pre></td></tr></table></figure>
+
+<p>python 3.x</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">0</span>1000</span><br><span class="line">  File <span class="string">&quot;&lt;stdin&gt;&quot;</span>, line <span class="number">1</span></span><br><span class="line">    <span class="number">0</span>1000</span><br><span class="line">        ^</span><br><span class="line">SyntaxError: invalid token</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">0o1000</span></span><br><span class="line"><span class="number">512</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="不等运算符"><a href="#不等运算符" class="headerlink" title="不等运算符"></a>不等运算符</h2><p>Python 2.x 中不等于有两种写法 !&#x3D; 和 &lt;&gt;</p>
+<p>Python 3.x 中去掉了&lt;&gt;, 只有!&#x3D;一种写法，还好，我从来没有使用&lt;&gt;的习惯</p>
+<h2 id="去掉了-repr-表达式"><a href="#去掉了-repr-表达式" class="headerlink" title="去掉了 repr 表达式&#96;&#96;"></a>去掉了 repr 表达式&#96;&#96;</h2><p>Python 2.x 中反引号&#96;&#96;相当于 repr 函数的作用</p>
+<p>Python 3.x 中去掉了&#96;&#96;这种写法，只允许使用 repr 函数，这样做的目的是为了使代码看上去更清晰么？不过我感觉用 repr 的机会很少，一般只在 debug 的时候才用，多数时候还是用 str 函数来用字符串描述对象。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">sendMail</span>(<span class="params">from_: <span class="built_in">str</span>, to: <span class="built_in">str</span>, title: <span class="built_in">str</span>, body: <span class="built_in">str</span></span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="多个模块被改名（根据-PEP8）"><a href="#多个模块被改名（根据-PEP8）" class="headerlink" title="多个模块被改名（根据 PEP8）"></a>多个模块被改名（根据 PEP8）</h2><table>
+<thead>
+<tr>
+<th>旧的名字</th>
+<th>新的名字</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>_winreg</td>
+<td>winreg</td>
+</tr>
+<tr>
+<td>ConfigParser</td>
+<td>configparser</td>
+</tr>
+<tr>
+<td>copy_reg</td>
+<td>copyreg</td>
+</tr>
+<tr>
+<td>Queue</td>
+<td>queue</td>
+</tr>
+<tr>
+<td>SocketServer</td>
+<td>socketserver</td>
+</tr>
+<tr>
+<td>repr</td>
+<td>reprlib</td>
+</tr>
+</tbody></table>
+<p>StringIO 模块现在被合并到新的 io 模组内。 new, md5, gopherlib 等模块被删除。 Python 2.6 已经支援新的 io 模组。</p>
+<p>httplib, BaseHTTPServer, CGIHTTPServer, SimpleHTTPServer, Cookie, cookielib 被合并到 http 包内。</p>
+<p>取消了 exec 语句，只剩下 exec()函数。 Python 2.6 已经支援 exec()函数。</p>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p>1）Py3.X 去除了 long 类型，现在只有一种整型——int，但它的行为就像 2.X 版本的 long</p>
+<p>2）新增了 bytes 类型，对应于 2.X 版本的八位串，定义一个 bytes 字面量的方法如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = <span class="string">b&#x27;china&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">type</span>(b)</span><br><span class="line">&lt;<span class="built_in">type</span> <span class="string">&#x27;bytes&#x27;</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<p>str 对象和 bytes 对象可以使用.encode() (str -&gt; bytes) or .decode() (bytes -&gt; str)方法相互转化。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>s = b.decode()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s</span><br><span class="line"><span class="string">&#x27;china&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b1 = s.encode()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b1</span><br><span class="line"><span class="string">b&#x27;china&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>3）dict的.keys()、.items 和.values()方法返回迭代器，而之前的iterkeys()等函数都被废弃。同时去掉的还有 dict.has_key()，用 in替代它吧.</p>
+<h2 id="打开文件"><a href="#打开文件" class="headerlink" title="打开文件"></a>打开文件</h2><p>原：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">file( ..... )</span><br><span class="line">或 </span><br><span class="line"><span class="built_in">open</span>(.....)</span><br></pre></td></tr></table></figure>
+<p>改为只能用</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">open</span>(.....)</span><br></pre></td></tr></table></figure>
+<p>从键盘录入一个字符串</p>
+<p>原:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">raw_input( <span class="string">&quot;提示信息&quot;</span> )</span><br></pre></td></tr></table></figure>
+<p>改为:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">input</span>( <span class="string">&quot;提示信息&quot;</span> )</span><br></pre></td></tr></table></figure>
+<p>在python2.x中raw_input()和input( )，两个函数都存在，其中区别为：</p>
+<p> raw_input()—将所有输入作为字符串看待，返回字符串类型<br> input()—–只能接收”数字”的输入，在对待纯数字输入时具有自己的特性，它返回所输入的数字的类型（int, float ）<br>在python3.x中raw_input()和input( )进行了整合，去除了raw_input()，仅保留了input()函数，其接收任意任性输入，将所有输入默认为字符串处理，并返回字符串类型。</p>
+<h2 id="map、filter-和-reduce"><a href="#map、filter-和-reduce" class="headerlink" title="map、filter 和 reduce"></a>map、filter 和 reduce</h2><p>这三个函数号称是函数式编程的代表。在 Python3.x 和 Python2.x 中也有了很大的差异。</p>
+<p>首先我们先简单的在 Python2.x 的交互下输入 map 和 filter,看到它们两者的类型是 built-in function(内置函数):</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">map</span></span><br><span class="line">&lt;built-<span class="keyword">in</span> function <span class="built_in">map</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">filter</span></span><br><span class="line">&lt;built-<span class="keyword">in</span> function <span class="built_in">filter</span>&gt;</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
+<p>它们输出的结果类型都是列表:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">map</span>(<span class="keyword">lambda</span> x:x *<span class="number">2</span>, [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line">[<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">filter</span>(<span class="keyword">lambda</span> x:x %<span class="number">2</span> ==<span class="number">0</span>,<span class="built_in">range</span>(<span class="number">10</span>))</span><br><span class="line">[<span class="number">0</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>]</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
+<p>但是在Python 3.x中它们却不是这个样子了：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">map</span></span><br><span class="line">&lt;<span class="keyword">class</span> <span class="string">&#x27;map&#x27;</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">map</span>(<span class="built_in">print</span>,[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line">&lt;<span class="built_in">map</span> <span class="built_in">object</span> at <span class="number">0x10d8bd400</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">filter</span></span><br><span class="line">&lt;<span class="keyword">class</span> <span class="string">&#x27;filter&#x27;</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">filter</span>(<span class="keyword">lambda</span> x:x % <span class="number">2</span> == <span class="number">0</span>, <span class="built_in">range</span>(<span class="number">10</span>))</span><br><span class="line">&lt;<span class="built_in">filter</span> <span class="built_in">object</span> at <span class="number">0x10d8bd3c8</span>&gt;</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
+<p>首先它们从函数变成了类，其次，它们的返回结果也从当初的列表成了一个可迭代的对象, 我们尝试用 next 函数来进行手工迭代:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>f =<span class="built_in">filter</span>(<span class="keyword">lambda</span> x:x %<span class="number">2</span> ==<span class="number">0</span>, <span class="built_in">range</span>(<span class="number">10</span>))</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">next</span>(f)</span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">next</span>(f)</span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">next</span>(f)</span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">next</span>(f)</span><br><span class="line"><span class="number">6</span></span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
+<p>对于比较高端的 reduce 函数，它在 Python 3.x 中已经不属于 built-in 了，被挪到 functools 模块当中。</p>
+<hr>
+<p>参考：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://www.runoob.com/python/python-2x-3x.html">Python2.x与3​​.x版本区别</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/kendrick/p/7478304.html">Python2和Python3的差异</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/hanggegege/p/5840005.html">python3和Python2的区别（被坑太久了）</a></li>
+</ul>
+</div><div class="article-licensing box"><div class="licensing-title"><p>Difference between Python2 and Python3</p><p><a href="https://bearfly1990.github.io/2019/02/19/2019/02/2019-02-19-Py2DifferPy3/">https://bearfly1990.github.io/2019/02/19/2019/02/2019-02-19-Py2DifferPy3/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>BF</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2019-02-19</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2024-03-31</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/python/">python</a></div><div class="sharethis-inline-share-buttons"></div><script src="http://localhost:4000" defer></script></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2019/02/25/2019/02/2019-02-25-BusinessDays/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">Generate Business Days</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2019/02/17/2019/02/2019-02-17-HDFSOperation/"><span class="level-item">Hadoop HDFS Operation</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/mybear.jpg" alt="bearfly1990"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">bearfly1990</p><p class="is-size-6 is-block">有熊在飞</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>HZ, China</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Entradas</p><a href="/archives/"><p class="title">98</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categorías</p><a href="/categories/"><p class="title">5</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Etiquetas</p><a href="/tags/"><p class="title">121</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/bearfly1990" target="_blank" rel="me noopener">SEGUIR</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/bearfly1990"><i class="fab fa-github"></i></a></div></div></div><!--!--></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/favicon.ico" alt="BF Blog" height="28"></a><p class="is-size-7"><span>&copy; 2025 BF</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Volver arriba" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "Este sitio web utiliza cookies para mejorar su experiencia.",
+          dismiss: "¡Entendido!",
+          allow: "Permitir cookies",
+          deny: "Descenso",
+          link: "Aprende más",
+          policy: "Política de cookies",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Teclea algo..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Teclea algo...","untitled":"(Sin título)","posts":"Entradas","pages":"Páginas","categories":"Categorías","tags":"Etiquetas"});
+        });</script></body></html>

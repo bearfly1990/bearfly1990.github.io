@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>DB For Test Result - BF Blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="BF Blog"><meta name="msapplication-TileImage" content="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="BF Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="背景之前做的自动化测试，最后的测试结果都是通过邮件发送给相关人员，没有做持久化，所以有时候想找一个版本的结果要去翻邮件列表，而且很有可能找不到。 接下来我希望能把最后的测试结果存放在数据库中，这样就可以方便对历史结果进行查询，充分利用数据库的特性。"><meta property="og:type" content="blog"><meta property="og:title" content="DB For Test Result"><meta property="og:url" content="https://bearfly1990.github.io/2018/12/02/2018/12/2018-12-02-TestResultDBDesign/"><meta property="og:site_name" content="BF Blog"><meta property="og:description" content="背景之前做的自动化测试，最后的测试结果都是通过邮件发送给相关人员，没有做持久化，所以有时候想找一个版本的结果要去翻邮件列表，而且很有可能找不到。 接下来我希望能把最后的测试结果存放在数据库中，这样就可以方便对历史结果进行查询，充分利用数据库的特性。"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://bearfly1990.github.io/img/bf/lily_03.jpg"><meta property="article:published_time" content="2018-12-01T16:00:00.000Z"><meta property="article:modified_time" content="2024-03-30T17:22:21.955Z"><meta property="article:author" content="BF"><meta property="article:tag" content="database"><meta property="article:tag" content="sql"><meta property="article:tag" content="E-R"><meta property="article:tag" content="work"><meta property="article:tag" content="json"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://bearfly1990.github.io/img/bf/lily_03.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://bearfly1990.github.io/2018/12/02/2018/12/2018-12-02-TestResultDBDesign/"},"headline":"DB For Test Result","image":["https://bearfly1990.github.io/img/bf/lily_03.jpg"],"datePublished":"2018-12-01T16:00:00.000Z","dateModified":"2024-03-30T17:22:21.955Z","author":{"@type":"Person","name":"BF"},"publisher":{"@type":"Organization","name":"BF Blog","logo":{"@type":"ImageObject","url":"https://bearfly1990.github.io/img/favicon.ico"}},"description":"背景之前做的自动化测试，最后的测试结果都是通过邮件发送给相关人员，没有做持久化，所以有时候想找一个版本的结果要去翻邮件列表，而且很有可能找不到。 接下来我希望能把最后的测试结果存放在数据库中，这样就可以方便对历史结果进行查询，充分利用数据库的特性。"}</script><link rel="canonical" href="https://bearfly1990.github.io/2018/12/02/2018/12/2018-12-02-TestResultDBDesign/"><link rel="icon" href="/img/favicon.ico"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/favicon.ico" alt="BF Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/bearfly1990"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Buscar" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-image"><span class="image is-7by3"><img class="fill" src="/img/bf/lily_03.jpg" alt="DB For Test Result"></span></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Publicado hace&nbsp;<time dateTime="2018-12-01T16:00:00.000Z" title="2018/12/2 00:00:00">2018-12-02</time></span><span class="level-item">Actualizado hace&nbsp;<time dateTime="2024-03-30T17:22:21.955Z" title="2024/3/31 01:22:21">2024-03-31</time></span><span class="level-item"> BF </span><span class="level-item">7 分钟 de lectura (Aproximadamente 1097 palabras)</span></div></div><h1 class="title is-3 is-size-4-mobile">DB For Test Result</h1><div class="content"><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>之前做的自动化测试，最后的测试结果都是通过邮件发送给相关人员，没有做持久化，所以有时候想找一个版本的结果要去翻邮件列表，而且很有可能找不到。</p>
+<p>接下来我希望能把最后的测试结果存放在数据库中，这样就可以方便对历史结果进行查询，充分利用数据库的特性。</p>
+<span id="more"></span>
+<h1 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h1><p>目前一些测试用例已经固定，变化不会太大，像 Benchmark 和 Message Import 都有一批固定的数据会重复跑。不过目标还是能创建相对通用的数据结构， 让大多数的结果都能存放。</p>
+<p>希望最后达到的效果：</p>
+<ul>
+<li>历次测试结果都能保存下来</li>
+<li>能区别出测试的有效性，有时候测试因为环境或者别的原因失败了，那么是没有参考价值的</li>
+<li>可以方便查询某一版本，某一参数或者某一天的测试结果（最好能直接通过 sql 查询到）</li>
+</ul>
+<h2 id="现状分析"><a href="#现状分析" class="headerlink" title="现状分析"></a>现状分析</h2><p>测试最直接的结果是生成在 testResult.csv 文件中，主要结构类似如下：</p>
+<table>
+<thead>
+<tr>
+<th align="left">TestCase</th>
+<th align="right">Msg Nums</th>
+<th align="right">CostTime(s)</th>
+<th align="right">Failed to Load&#x2F;Post</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">TC01_MsgType1</td>
+<td align="right">30000</td>
+<td align="right">1200</td>
+<td align="right">0&#x2F;0</td>
+</tr>
+<tr>
+<td align="left">TC02_MsgType2</td>
+<td align="right">45000</td>
+<td align="right">1652</td>
+<td align="right">0&#x2F;0</td>
+</tr>
+<tr>
+<td align="left">TC03_MsgType3</td>
+<td align="right">45000</td>
+<td align="right">2320</td>
+<td align="right">0&#x2F;0</td>
+</tr>
+</tbody></table>
+<p>测试完成后，会根据 TestResult.xlsx.template 生成一份 excel 报告，额外包含一些比如 CPU&#x2F;Memory 及使用的参数等信息。最后通过 SMTP 服务器发送到全组邮件列表。</p>
+<h1 id="设计方案"><a href="#设计方案" class="headerlink" title="设计方案"></a>设计方案</h1><h2 id="方案一：将测试结果文件直接保存在数据库中"><a href="#方案一：将测试结果文件直接保存在数据库中" class="headerlink" title="方案一：将测试结果文件直接保存在数据库中"></a>方案一：将测试结果文件直接保存在数据库中</h2><p>这个方案是简单的，做的工作也最少，只要在数据库中建立一张表，建立几个必要的字段(e.g. date, version)再加上文件 IO 流就好了，比如：</p>
+<table>
+<thead>
+<tr>
+<th>TestVersion</th>
+<th>APPVersion</th>
+<th>TotalTime</th>
+<th>FileResult</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>20181202_121232</td>
+<td>P01</td>
+<td>2450</td>
+<td>xxx</td>
+</tr>
+<tr>
+<td>20181202_134630</td>
+<td>P02</td>
+<td>3600</td>
+<td>xxx</td>
+</tr>
+<tr>
+<td>20181202_151256</td>
+<td>Po3</td>
+<td>1660</td>
+<td>xxx</td>
+</tr>
+</tbody></table>
+<p>当然，直接把文档存在数据库也不太好，可以直接存在一个目录下，而在数据库里只存文件路径：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create table</span> testresult(</span><br><span class="line">    id <span class="type">int</span> <span class="keyword">primary key</span> auto_increment,</span><br><span class="line">    datetimes datetime,</span><br><span class="line">    testVersion <span class="type">char</span>(<span class="number">15</span>),</span><br><span class="line">    APPVersion <span class="type">varchar</span>(<span class="number">20</span>),</span><br><span class="line">    TotalTime <span class="type">int</span>,</span><br><span class="line">    FilePath <span class="type">varchar</span>(<span class="number">30</span>)</span><br><span class="line">    <span class="comment">-- File MediumBlob</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>但明显的，这个方案并不理想，比如我想查询一个 case 在一个时间段的平均花费时间，我没有方法用这个方式得到，打开几个对应的文档自己查看，那是不现实的。</p>
+<h2 id="方案二：将测试结果构造成-JSON-等数据结构"><a href="#方案二：将测试结果构造成-JSON-等数据结构" class="headerlink" title="方案二：将测试结果构造成 JSON 等数据结构"></a>方案二：将测试结果构造成 JSON 等数据结构</h2><p>这个方案其实只是方案一的改进版，将测试结果数据抽象之后，可以做为 JSON 或者别的数据库支持的格式存储，可以使用 sql 直接查询其中的数据。</p>
+<table>
+<thead>
+<tr>
+<th>TestVersion</th>
+<th>APPVersion</th>
+<th>TotalTime</th>
+<th>JsonResult</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>20181202_121232</td>
+<td>P01</td>
+<td>2450</td>
+<td>{xxx}</td>
+</tr>
+<tr>
+<td>20181202_134630</td>
+<td>P02</td>
+<td>3600</td>
+<td>{xxx}</td>
+</tr>
+<tr>
+<td>20181202_151256</td>
+<td>Po3</td>
+<td>1660</td>
+<td>{xxx}</td>
+</tr>
+</tbody></table>
+<p>所以如果数据库支持的话，那也是相对方便的。 比如 JSON 可以类似如下：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">[</span></span><br><span class="line">  <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;TestCase&quot;</span><span class="punctuation">:</span> <span class="string">&quot;TC01_MsgType1&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;MsgNums&quot;</span><span class="punctuation">:</span> <span class="number">30000</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;CostTime&quot;</span><span class="punctuation">:</span> <span class="number">1200</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;FailedLoad&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;FailedPost&quot;</span><span class="punctuation">:</span> <span class="number">0</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;TestCase&quot;</span><span class="punctuation">:</span> <span class="string">&quot;TC01_MsgType1&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;MsgNums&quot;</span><span class="punctuation">:</span> <span class="number">30000</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;CostTime&quot;</span><span class="punctuation">:</span> <span class="number">1200</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;FailedLoad&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;FailedPost&quot;</span><span class="punctuation">:</span> <span class="number">0</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">]</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create table</span> testresult(</span><br><span class="line">    id <span class="type">int</span> <span class="keyword">primary key</span> auto_increment,</span><br><span class="line">    datetimes datetime,</span><br><span class="line">    testVersion <span class="type">char</span>(<span class="number">15</span>),</span><br><span class="line">    APPVersion <span class="type">varchar</span>(<span class="number">20</span>),</span><br><span class="line">    TotalTime <span class="type">int</span>,</span><br><span class="line">    JsonResult json <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span></span><br><span class="line">    <span class="comment">-- File MediumBlob</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>比如通过如下的语句就能找到一些想要的数据：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> JsonResult<span class="operator">-</span><span class="operator">&gt;</span><span class="string">&#x27;$[*].CostTime&#x27;</span>  <span class="keyword">from</span> testresult;</span><br></pre></td></tr></table></figure>
+
+<p>更多的 mysql 的操作请看最后参考中的一些文档。</p>
+<h2 id="方案三：使用传统数据格式来存储"><a href="#方案三：使用传统数据格式来存储" class="headerlink" title="方案三：使用传统数据格式来存储"></a>方案三：使用传统数据格式来存储</h2><p>因为公司里不方便用 mysql 之类的数据库，现在的有 sqlserver，那么就直接利用吧。</p>
+<p>这样的话就要设计更多的字段了，我画了一个简单的 E-R 图：</p>
+<p><img src="/img/post/2018/12/2018-12-02-TestResultDBDesign.svg" alt="ER Map"></p>
+<p>像这样如果想要查询某一段时间一个 case 的平均时间就很方便了：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="built_in">AVG</span>(TD.CostTime) <span class="keyword">from</span> TestResult TR, TestDetails TD, TestCases TC</span><br><span class="line"><span class="keyword">where</span> TD.TestResultID <span class="operator">=</span> TA.ID <span class="keyword">and</span> TD.TestCaseID <span class="operator">=</span> TC.ID</span><br><span class="line"><span class="keyword">and</span> TC.TestCaseName <span class="operator">=</span> <span class="string">&#x27;ImportMsg01&#x27;</span></span><br><span class="line"><span class="keyword">and</span> TR.TestTime <span class="operator">&gt;</span> <span class="string">&#x27;2018-12-01&#x27;</span></span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> TD.CostTime</span><br></pre></td></tr></table></figure>
+
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>主要思路这样差不多了，真的在做的时候应该会有许多细节，到时完善。<br>这个是接下来这周的一个小目标，加油。</p>
+<hr>
+<p>参考：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36213352/article/details/83054993">mysql 对 json 数据的使用</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/manongpengzai/article/details/77200399">对 MySQL 中 JSON 数据类型的操作和分析</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhaowen25/article/details/52938004">MySQL5.7 新特性之 JSON 类型</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/u013329580/article/details/77096630">mysql5.7Json 数组解析</a></li>
+</ul>
+</div><div class="article-licensing box"><div class="licensing-title"><p>DB For Test Result</p><p><a href="https://bearfly1990.github.io/2018/12/02/2018/12/2018-12-02-TestResultDBDesign/">https://bearfly1990.github.io/2018/12/02/2018/12/2018-12-02-TestResultDBDesign/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>BF</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2018-12-02</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2024-03-31</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/database/">database</a><a class="link-muted mr-2" rel="tag" href="/tags/sql/">sql</a><a class="link-muted mr-2" rel="tag" href="/tags/E-R/">E-R</a><a class="link-muted mr-2" rel="tag" href="/tags/work/">work</a><a class="link-muted mr-2" rel="tag" href="/tags/json/">json</a></div><div class="sharethis-inline-share-buttons"></div><script src="http://localhost:4000" defer></script></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2018/12/06/2018/12/2018-12-05-JavaAnotiation/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">Java Annotation</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2018/11/30/2018/11/2018-11-30-StringPattern/"><span class="level-item">String Pattern</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/mybear.jpg" alt="bearfly1990"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">bearfly1990</p><p class="is-size-6 is-block">有熊在飞</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>HZ, China</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Entradas</p><a href="/archives/"><p class="title">98</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categorías</p><a href="/categories/"><p class="title">5</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Etiquetas</p><a href="/tags/"><p class="title">121</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/bearfly1990" target="_blank" rel="me noopener">SEGUIR</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/bearfly1990"><i class="fab fa-github"></i></a></div></div></div><!--!--></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/favicon.ico" alt="BF Blog" height="28"></a><p class="is-size-7"><span>&copy; 2025 BF</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Volver arriba" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "Este sitio web utiliza cookies para mejorar su experiencia.",
+          dismiss: "¡Entendido!",
+          allow: "Permitir cookies",
+          deny: "Descenso",
+          link: "Aprende más",
+          policy: "Política de cookies",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Teclea algo..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Teclea algo...","untitled":"(Sin título)","posts":"Entradas","pages":"Páginas","categories":"Categorías","tags":"Etiquetas"});
+        });</script></body></html>

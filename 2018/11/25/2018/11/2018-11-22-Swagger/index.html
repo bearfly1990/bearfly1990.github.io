@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Swagger - BF Blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="BF Blog"><meta name="msapplication-TileImage" content="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="BF Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="背景项目组最近新开发一套 RESTful API，需要对应的 API 文档，其实之前我有用 apidoc 作为方案给大家看过。 感觉还好，也是可以直接写成注释放在代码里最后生成。但能感受到它属于轻量级的，内容相对自由，灵活度很大，但也意味着更容易犯错。 不过最后上面还是决定使用 swagger 这一套东西，所以简单的看了下，功能果然成强大，显得更 professionnal 一些。 下面就罗列下我"><meta property="og:type" content="blog"><meta property="og:title" content="Swagger"><meta property="og:url" content="https://bearfly1990.github.io/2018/11/25/2018/11/2018-11-22-Swagger/"><meta property="og:site_name" content="BF Blog"><meta property="og:description" content="背景项目组最近新开发一套 RESTful API，需要对应的 API 文档，其实之前我有用 apidoc 作为方案给大家看过。 感觉还好，也是可以直接写成注释放在代码里最后生成。但能感受到它属于轻量级的，内容相对自由，灵活度很大，但也意味着更容易犯错。 不过最后上面还是决定使用 swagger 这一套东西，所以简单的看了下，功能果然成强大，显得更 professionnal 一些。 下面就罗列下我"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://bearfly1990.github.io/img/bf/beach_04.jpg"><meta property="article:published_time" content="2018-11-24T16:00:00.000Z"><meta property="article:modified_time" content="2024-03-30T17:22:21.954Z"><meta property="article:author" content="BF"><meta property="article:tag" content="RESTful"><meta property="article:tag" content="java"><meta property="article:tag" content="swagger"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://bearfly1990.github.io/img/bf/beach_04.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://bearfly1990.github.io/2018/11/25/2018/11/2018-11-22-Swagger/"},"headline":"Swagger","image":["https://bearfly1990.github.io/img/bf/beach_04.jpg"],"datePublished":"2018-11-24T16:00:00.000Z","dateModified":"2024-03-30T17:22:21.954Z","author":{"@type":"Person","name":"BF"},"publisher":{"@type":"Organization","name":"BF Blog","logo":{"@type":"ImageObject","url":"https://bearfly1990.github.io/img/favicon.ico"}},"description":"背景项目组最近新开发一套 RESTful API，需要对应的 API 文档，其实之前我有用 apidoc 作为方案给大家看过。 感觉还好，也是可以直接写成注释放在代码里最后生成。但能感受到它属于轻量级的，内容相对自由，灵活度很大，但也意味着更容易犯错。 不过最后上面还是决定使用 swagger 这一套东西，所以简单的看了下，功能果然成强大，显得更 professionnal 一些。 下面就罗列下我"}</script><link rel="canonical" href="https://bearfly1990.github.io/2018/11/25/2018/11/2018-11-22-Swagger/"><link rel="icon" href="/img/favicon.ico"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/favicon.ico" alt="BF Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/bearfly1990"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Buscar" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-image"><span class="image is-7by3"><img class="fill" src="/img/bf/beach_04.jpg" alt="Swagger"></span></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Publicado hace&nbsp;<time dateTime="2018-11-24T16:00:00.000Z" title="2018/11/25 00:00:00">2018-11-25</time></span><span class="level-item">Actualizado hace&nbsp;<time dateTime="2024-03-30T17:22:21.954Z" title="2024/3/31 01:22:21">2024-03-31</time></span><span class="level-item"> BF </span><span class="level-item">9 分钟 de lectura (Aproximadamente 1281 palabras)</span></div></div><h1 class="title is-3 is-size-4-mobile">Swagger</h1><div class="content"><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>项目组最近新开发一套 RESTful API，需要对应的 API 文档，其实之前我有用 <a target="_blank" rel="noopener" href="http://apidocjs.com/">apidoc</a> 作为方案给大家看过。</p>
+<p>感觉还好，也是可以直接写成注释放在代码里最后生成。但能感受到它属于轻量级的，内容相对自由，灵活度很大，但也意味着更容易犯错。</p>
+<p>不过最后上面还是决定使用 <a target="_blank" rel="noopener" href="https://swagger.io/">swagger</a> 这一套东西，所以简单的看了下，功能果然成强大，显得更 professionnal 一些。</p>
+<p>下面就罗列下我目前掌握的一些信息，其实学习 swagger 的过程就是学习 RESTful API 的过程。</p>
+<span id="more"></span>
+<h1 id="Swagger"><a href="#Swagger" class="headerlink" title="Swagger"></a>Swagger</h1><p>Swagger 是一个规范和完整的框架，用于生成、描述、调用和可视化 RESTful 风格的 Web 服务。总体目标是使客户端和文件系统作为服务器以同样的速度来更新 。</p>
+<p>接口的方法，参数和模型紧密集成到服务器端的代码，允许 API 来始终保持同步。</p>
+<p>Swagger 让部署管理和使用功能强大的 API 从未如此简单。</p>
+<h1 id="Swagger-UI"><a href="#Swagger-UI" class="headerlink" title="Swagger UI"></a>Swagger UI</h1><p>我们先来看一看最后文档的样子，下面是官方的 <a target="_blank" rel="noopener" href="https://swagger.io/tools/swagger-ui/">Live Demo</a>， 大家可以感受一下。<br><img src="/img/post/2018/11/2018-11-22-Swagger-ui.gif" alt="Swagger UI"></p>
+<p>Swagger UI 主要用来通过读取对应的 YAML&#x2F;JSON 文件，来解析并展示 “漂亮”的 api 文档，效果还是不错的，相当于前端展示功能。</p>
+<p>它的 github 地址<a target="_blank" rel="noopener" href="https://github.com/swagger-api/swagger-ui">https://github.com/swagger-api/swagger-ui</a></p>
+<p>可以下载之后，在本地放在 http server 下直接使用，当然也可以二次开发，具体内容请看官方的 ReadMe。</p>
+<h1 id="Swagger-Editor"><a href="#Swagger-Editor" class="headerlink" title="Swagger Editor"></a>Swagger Editor</h1><p>那么另外一个项目<a target="_blank" rel="noopener" href="https://github.com/swagger-api/swagger-editor">https://github.com/swagger-api/swagger-editor</a> 便是用来编写文档的。</p>
+<p>它采用的是 YAML 语法，所以可以丰富的表达许多内容。下面是官方的<a target="_blank" rel="noopener" href="https://swagger.io/tools/swagger-editor/">Live Demo</a>，其实很多细节内容在这边就可以学习到，它的样例就已经很丰富。</p>
+<p>Editor 也可以下载来到本地使用，但是需要 Node.js的支持，具体请参考官方 ReadMe。<br><img src="/img/post/2018/11/2018-11-22-Swagger-editor.jpg" alt="Swagger Editor"></p>
+<h1 id="代码中的使用"><a href="#代码中的使用" class="headerlink" title="代码中的使用"></a>代码中的使用</h1><p>通过一定的配置（需要继续研究），可以通过注解的方式(主要以 java 为例)，可以生成 api 文档，甚至可以直接调试。</p>
+<table>
+<thead>
+<tr>
+<th align="center">作用范围</th>
+<th align="center">API</th>
+<th align="right">使用位置</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">对象属性</td>
+<td align="center">@ApiModelProperty</td>
+<td align="right">用在出入参数对象的字段上</td>
+</tr>
+<tr>
+<td align="center">协议集描述</td>
+<td align="center">@Api</td>
+<td align="right">用于 controller 类上</td>
+</tr>
+<tr>
+<td align="center">协议描述</td>
+<td align="center">@ApiOperation</td>
+<td align="right">用在 controller 的方法上</td>
+</tr>
+<tr>
+<td align="center">Response 集</td>
+<td align="center">@ApiResponses</td>
+<td align="right">用在 controller 的方法上</td>
+</tr>
+<tr>
+<td align="center">Response</td>
+<td align="center">@ApiResponse</td>
+<td align="right">用在 @ApiResponses 里边</td>
+</tr>
+<tr>
+<td align="center">非对象参数集</td>
+<td align="center">@ApiImplicitParams</td>
+<td align="right">用在 controller 的方法上</td>
+</tr>
+<tr>
+<td align="center">非对象参数描述</td>
+<td align="center">@ApiImplicitParam</td>
+<td align="right">用在@ApiImplicitParams 的方法里边</td>
+</tr>
+<tr>
+<td align="center">描述返回对象的意义</td>
+<td align="center">@ApiModel</td>
+<td align="right">用在返回对象类上</td>
+</tr>
+</tbody></table>
+<h2 id="Samples"><a href="#Samples" class="headerlink" title="Samples"></a>Samples</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ApiOperation(&quot;信息软删除&quot;)</span></span><br><span class="line"><span class="meta">@ApiResponses(&#123; @ApiResponse(code = CommonStatus.OK, message = &quot;操作成功&quot;),</span></span><br><span class="line"><span class="meta">        @ApiResponse(code = CommonStatus.EXCEPTION, message = &quot;服务器内部异常&quot;),</span></span><br><span class="line"><span class="meta">        @ApiResponse(code = CommonStatus.FORBIDDEN, message = &quot;权限不足&quot;) &#125;)</span></span><br><span class="line"><span class="meta">@ApiImplicitParams(&#123; @ApiImplicitParam(paramType = &quot;query&quot;, dataType = &quot;Long&quot;, name = &quot;id&quot;, value = &quot;信息id&quot;, required = true) &#125;)</span></span><br><span class="line"><span class="meta">@RequestMapping(value = &quot;/remove.json&quot;, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)</span></span><br><span class="line"><span class="keyword">public</span> RestfulProtocol <span class="title function_">remove</span><span class="params">(Long id)</span> &#123;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ApiModelProperty(value = &quot;标题&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String  title;</span><br></pre></td></tr></table></figure>
+
+<h2 id="ApiImplicitParam"><a href="#ApiImplicitParam" class="headerlink" title="@ApiImplicitParam"></a>@ApiImplicitParam</h2><table>
+<thead>
+<tr>
+<th align="center">属性</th>
+<th align="center">取值</th>
+<th align="right">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">paramType</td>
+<td align="center"></td>
+<td align="right">查询参数类型</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">path</td>
+<td align="right">以地址的形式提交数据</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">query</td>
+<td align="right">直接跟参数完成自动映射赋值</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">body</td>
+<td align="right">以流的形式提交 仅支持 POST</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">header</td>
+<td align="right">参数在 request headers 里边提交</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">form</td>
+<td align="right">以 form 表单的形式提交 仅支持 POST</td>
+</tr>
+<tr>
+<td align="center">dataType</td>
+<td align="center"></td>
+<td align="right">参数的数据类型 只作为标志说明，并没有实际验证</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">Long</td>
+<td align="right"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">String</td>
+<td align="right"></td>
+</tr>
+<tr>
+<td align="center">name</td>
+<td align="center"></td>
+<td align="right">接收参数名</td>
+</tr>
+<tr>
+<td align="center">value</td>
+<td align="center"></td>
+<td align="right">接收参数的意义描述</td>
+</tr>
+<tr>
+<td align="center">required</td>
+<td align="center"></td>
+<td align="right">参数是否必填</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">true</td>
+<td align="right">必填</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">false</td>
+<td align="right">非必填</td>
+</tr>
+<tr>
+<td align="center">defaultValue</td>
+<td align="center"></td>
+<td align="right">默认值</td>
+</tr>
+</tbody></table>
+<h3 id="paramType-示例"><a href="#paramType-示例" class="headerlink" title="paramType 示例"></a>paramType 示例</h3><h4 id="path"><a href="#path" class="headerlink" title="path"></a>path</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(value = &quot;/findById1/&#123;id&#125;&quot;, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)</span></span><br><span class="line"><span class="meta">@PathVariable(name = &quot;id&quot;)</span> Long id</span><br></pre></td></tr></table></figure>
+
+<h4 id="body"><a href="#body" class="headerlink" title="body"></a>body</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ApiImplicitParams(&#123; @ApiImplicitParam(paramType = &quot;body&quot;, dataType = &quot;MessageParam&quot;, name = &quot;param&quot;, value = &quot;信息参数&quot;, required = true) &#125;)</span></span><br><span class="line"><span class="meta">@RequestMapping(value = &quot;/findById3&quot;, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)</span></span><br><span class="line"><span class="meta">@RequestBody</span> MessageParam param</span><br></pre></td></tr></table></figure>
+
+<p>提交的参数是这个对象的一个 json，然后会自动解析到对应的字段上去，也可以通过流的形式接收当前的请求数据，但是这个和上面的接收方式仅能使用一个（用@RequestBody 之后流就会关闭了）</p>
+<h4 id="header"><a href="#header" class="headerlink" title="header"></a>header</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ApiImplicitParams(&#123; @ApiImplicitParam(paramType = &quot;header&quot;, dataType = &quot;Long&quot;, name = &quot;id&quot;, value = &quot;信息id&quot;, required = true) &#125;)</span></span><br><span class="line"></span><br><span class="line"><span class="type">String</span> <span class="variable">idstr</span> <span class="operator">=</span> request.getHeader(<span class="string">&quot;id&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (StringUtils.isNumeric(idstr)) &#123;</span><br><span class="line">        id = Long.parseLong(idstr);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Form"><a href="#Form" class="headerlink" title="Form"></a>Form</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ApiImplicitParams(&#123; @ApiImplicitParam(paramType = &quot;form&quot;, dataType = &quot;Long&quot;, name = &quot;id&quot;, value = &quot;信息id&quot;, required = true) &#125;)</span></span><br><span class="line"><span class="meta">@RequestMapping(value = &quot;/findById5&quot;, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VAL</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="SpringMVC-集成-Swagger-插件以及-Swagger-注解的简单使用"><a href="#SpringMVC-集成-Swagger-插件以及-Swagger-注解的简单使用" class="headerlink" title="SpringMVC 集成 Swagger 插件以及 Swagger 注解的简单使用"></a>SpringMVC 集成 Swagger 插件以及 Swagger 注解的简单使用</h2><p>我发现一篇不错的文章，有时间试一下。</p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/67c9b84226cd">SpringMVC 集成 Swagger 插件以及 Swagger 注解的简单使用</a></p>
+<h1 id="未完待续，保持更新。"><a href="#未完待续，保持更新。" class="headerlink" title="未完待续，保持更新。"></a>未完待续，保持更新。</h1><hr>
+<p>参考：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/xupeng874395012/article/details/68946676">swagger注释API详细说明</a></li>
+<li><a target="_blank" rel="noopener" href="https://swagger.io/">https://swagger.io/</a></li>
+</ul>
+</div><div class="article-licensing box"><div class="licensing-title"><p>Swagger</p><p><a href="https://bearfly1990.github.io/2018/11/25/2018/11/2018-11-22-Swagger/">https://bearfly1990.github.io/2018/11/25/2018/11/2018-11-22-Swagger/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>BF</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2018-11-25</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2024-03-31</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/RESTful/">RESTful</a><a class="link-muted mr-2" rel="tag" href="/tags/java/">java</a><a class="link-muted mr-2" rel="tag" href="/tags/swagger/">swagger</a></div><div class="sharethis-inline-share-buttons"></div><script src="http://localhost:4000" defer></script></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2018/11/26/2018/11/2018-11-26-PygRPC/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">Python gRPC</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2018/11/21/2018/11/2018-11-21-WorkDiary-01/"><span class="level-item">Work Diary (01)</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/mybear.jpg" alt="bearfly1990"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">bearfly1990</p><p class="is-size-6 is-block">有熊在飞</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>HZ, China</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Entradas</p><a href="/archives/"><p class="title">98</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categorías</p><a href="/categories/"><p class="title">5</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Etiquetas</p><a href="/tags/"><p class="title">121</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/bearfly1990" target="_blank" rel="me noopener">SEGUIR</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/bearfly1990"><i class="fab fa-github"></i></a></div></div></div><!--!--></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/favicon.ico" alt="BF Blog" height="28"></a><p class="is-size-7"><span>&copy; 2025 BF</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Volver arriba" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "Este sitio web utiliza cookies para mejorar su experiencia.",
+          dismiss: "¡Entendido!",
+          allow: "Permitir cookies",
+          deny: "Descenso",
+          link: "Aprende más",
+          policy: "Política de cookies",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Teclea algo..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Teclea algo...","untitled":"(Sin título)","posts":"Entradas","pages":"Páginas","categories":"Categorías","tags":"Etiquetas"});
+        });</script></body></html>

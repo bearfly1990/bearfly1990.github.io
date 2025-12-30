@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="robots" content="noindex"><meta><title>Etiqueta: openpyxl - BF Blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="BF Blog"><meta name="msapplication-TileImage" content="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="BF Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta property="og:type" content="blog"><meta property="og:title" content="BF Blog"><meta property="og:url" content="https://bearfly1990.github.io/"><meta property="og:site_name" content="BF Blog"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://bearfly1990.github.io/img/og_image.png"><meta property="article:author" content="bearfly1990"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://bearfly1990.github.io/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://bearfly1990.github.io"},"headline":"BF Blog","image":["https://bearfly1990.github.io/img/og_image.png"],"author":{"@type":"Person","name":"bearfly1990"},"publisher":{"@type":"Organization","name":"BF Blog","logo":{"@type":"ImageObject","url":"https://bearfly1990.github.io/img/favicon.ico"}},"description":""}</script><link rel="icon" href="/img/favicon.ico"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/favicon.ico" alt="BF Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/bearfly1990"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Buscar" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-content"><nav class="breadcrumb" aria-label="breadcrumbs"><ul><li><a href="/tags/">Etiquetas</a></li><li class="is-active"><a href="#" aria-current="page">openpyxl</a></li></ul></nav></div></div><div class="card"><div class="card-image"><a class="image is-7by3" href="/2021/03/11/2021/03/2021-03-11-HareData/"><img class="fill" src="/img/bf/python.jpg" alt="Pandas + Openpyxl process excel"></a></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Publicado hace&nbsp;<time dateTime="2021-03-10T16:00:00.000Z" title="2021/3/11 00:00:00">2021-03-11</time></span><span class="level-item">Actualizado hace&nbsp;<time dateTime="2024-03-30T17:22:21.967Z" title="2024/3/31 01:22:21">2024-03-31</time></span><span class="level-item"> BF </span><span class="level-item"><a class="link-muted" href="/categories/Learn/">Learn</a></span><span class="level-item">7 分钟 de lectura (Aproximadamente 1077 palabras)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/03/11/2021/03/2021-03-11-HareData/">Pandas + Openpyxl process excel</a></p><div class="content"><h1 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h1><table>
+<thead>
+<tr>
+<th>date</th>
+<th>update</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2021-03-11</td>
+<td>1. Initial</td>
+</tr>
+</tbody></table>
+<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>最近帮同学写了一个数据处理的小程序，用<code>python</code>开发，用来处理excel数据。</p>
+<p>其实excel本身就能实现大部分功能，并不一定要用程序处理，但用代码的话更灵活一些。</p>
+<h1 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h1><p>数据本身不能share，但是计算逻辑应该无所谓，所以代码已经放在<a target="_blank" rel="noopener" href="https://github.com/bearfly1990/haredata">haredata</a>。</p>
+<p>程序主要用到了python库<code>pandas + openpyxl</code>，写了非常简单的<code>ui</code>界面来选择输入的文件，处理完之后数据输出写入到新的文件里。</p>
+<p>为了使用方便，最后打包成了exe。</p></div><a class="article-more button is-small is-size-7" href="/2021/03/11/2021/03/2021-03-11-HareData/#more">Leer más</a></article></div><div class="card"><div class="card-image"><a class="image is-7by3" href="/2019/11/10/2019/11/2019-11-10-OpenpyxlWithHugeData/"><img class="fill" src="/img/bf/python.jpg" alt="openpyxl with big data"></a></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Publicado hace&nbsp;<time dateTime="2019-11-09T16:00:00.000Z" title="2019/11/10 00:00:00">2019-11-10</time></span><span class="level-item">Actualizado hace&nbsp;<time dateTime="2024-03-30T17:22:21.963Z" title="2024/3/31 01:22:21">2024-03-31</time></span><span class="level-item"> BF </span><span class="level-item">7 分钟 de lectura (Aproximadamente 1029 palabras)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2019/11/10/2019/11/2019-11-10-OpenpyxlWithHugeData/">openpyxl with big data</a></p><div class="content"><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>最近写了一个脚本，用 openpyxl 从 sql server 数据库中读取数据，使用 template 文件，将数据填充进去，生成最后的 daily report。</p>
+<p>使用 openpyxl 来操作 excel，很方便,但发现当要写入大量数据的时候，时间非常慢，而且非常占内存。</p>
+<p>最直接的原因是 openpyxl 会将读写过的 cell 都加载在内存中方便后面 update，不会释放这些 cell 而会一直驻留在内存中。</p>
+<p>所以如果单纯写的话建议使用 xlrd，而且 pandas 有 to_csv&#x2F;to_excel 这样的直接的方法。</p>
+<p>但是因为我需要使用模板，在研究后发现 openpyxl 有 read_only&#x2F;write_only 的模式，可以满足我的需求。<br>(一定要保证安装了 lxml 库，不然就算使用 write_only 模式，也一样会点用大量占存。）</p>
+<p>Note：针对 office2007 以后的版本，xlsx 文件上限行数大约为 100 多万条的样子。</p></div><a class="article-more button is-small is-size-7" href="/2019/11/10/2019/11/2019-11-10-OpenpyxlWithHugeData/#more">Leer más</a></article></div><div class="card"><div class="card-image"><a class="image is-7by3" href="/2019/01/20/2019/01/2019-01-20-CompareExcel/"><img class="fill" src="/img/bf/python_01.jpg" alt="Compare Excel"></a></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Publicado hace&nbsp;<time dateTime="2019-01-19T16:00:00.000Z" title="2019/1/20 00:00:00">2019-01-20</time></span><span class="level-item">Actualizado hace&nbsp;<time dateTime="2024-03-30T17:22:21.959Z" title="2024/3/31 01:22:21">2024-03-31</time></span><span class="level-item"> BF </span><span class="level-item">5 分钟 de lectura (Aproximadamente 809 palabras)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2019/01/20/2019/01/2019-01-20-CompareExcel/">Compare Excel</a></p><div class="content"><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>下周可能有一个小任务是由于系统升级，需要保证生成的 excel 是一致的，所以写了一个非常简单的对比脚本。</p></div><a class="article-more button is-small is-size-7" href="/2019/01/20/2019/01/2019-01-20-CompareExcel/#more">Leer más</a></article></div><div class="card"><div class="card-image"><a class="image is-7by3" href="/2018/06/18/2018/06/2018-06-18-CreateLineChartByOpenpyxl/"><img class="fill" src="/img/bf/car_1.jpg" alt="Create Excel with line chart by openpyxl"></a></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Publicado hace&nbsp;<time dateTime="2018-06-17T16:00:00.000Z" title="2018/6/18 00:00:00">2018-06-18</time></span><span class="level-item">Actualizado hace&nbsp;<time dateTime="2024-03-30T17:22:21.946Z" title="2024/3/31 01:22:21">2024-03-31</time></span><span class="level-item"> BF </span><span class="level-item">5 分钟 de lectura (Aproximadamente 678 palabras)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2018/06/18/2018/06/2018-06-18-CreateLineChartByOpenpyxl/">Create Excel with line chart by openpyxl</a></p><div class="content"><h1 id="Create-Excel-with-line-chart-by-openpyxl"><a href="#Create-Excel-with-line-chart-by-openpyxl" class="headerlink" title="Create Excel with line chart by openpyxl"></a>Create Excel with line chart by openpyxl</h1><p>之前有用过<code>openpyxl</code>做了<a href="https://bearfly1990.github.io/2018/04/24/openpyxl/">简单的介绍</a>。</p>
+<p>但是我今天在尝试画chart的时候，发现没有很好用的api可以参考，可能是我没找到吧，一些细节只能google，或者从源代码里找。</p>
+<p>好在之前在做AMS报表的时候，有用ChartFX画过一些图表，大体上的api设计是一致的。</p></div><a class="article-more button is-small is-size-7" href="/2018/06/18/2018/06/2018-06-18-CreateLineChartByOpenpyxl/#more">Leer más</a></article></div><div class="card"><div class="card-image"><a class="image is-7by3" href="/2018/04/24/2018/04/2018-04-24-openpyxl/"><img class="fill" src="/img/post-bg-swift.jpg" alt="openpyxl"></a></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Publicado hace&nbsp;<time dateTime="2018-04-23T16:00:00.000Z" title="2018/4/24 00:00:00">2018-04-24</time></span><span class="level-item">Actualizado hace&nbsp;<time dateTime="2024-03-30T17:22:21.944Z" title="2024/3/31 01:22:21">2024-03-31</time></span><span class="level-item"> BF </span><span class="level-item">4 分钟 de lectura (Aproximadamente 645 palabras)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2018/04/24/2018/04/2018-04-24-openpyxl/">openpyxl</a></p><div class="content"><h2 id="openpyxl"><a href="#openpyxl" class="headerlink" title="openpyxl"></a>openpyxl</h2><p>之前测试PamReport的报表，需要对比txt和excel报表，用java(<a target="_blank" rel="noopener" href="https://poi.apache.org/">org.apache.poi</a>)写了对比的脚本。但感觉还是有些麻烦，<br>java在文本io方面还是不够灵活方便。今天试了python的openpyxl这个库，感觉真的的特别好用，就试着用了一下基本操作。</p></div><a class="article-more button is-small is-size-7" href="/2018/04/24/2018/04/2018-04-24-openpyxl/#more">Leer más</a></article></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/mybear.jpg" alt="bearfly1990"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">bearfly1990</p><p class="is-size-6 is-block">有熊在飞</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>HZ, China</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Entradas</p><a href="/archives/"><p class="title">98</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categorías</p><a href="/categories/"><p class="title">5</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Etiquetas</p><a href="/tags/"><p class="title">121</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/bearfly1990" target="_blank" rel="me noopener">SEGUIR</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/bearfly1990"><i class="fab fa-github"></i></a></div></div></div><!--!--></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/favicon.ico" alt="BF Blog" height="28"></a><p class="is-size-7"><span>&copy; 2025 bearfly1990</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Volver arriba" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "Este sitio web utiliza cookies para mejorar su experiencia.",
+          dismiss: "¡Entendido!",
+          allow: "Permitir cookies",
+          deny: "Descenso",
+          link: "Aprende más",
+          policy: "Política de cookies",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Teclea algo..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Teclea algo...","untitled":"(Sin título)","posts":"Entradas","pages":"Páginas","categories":"Categorías","tags":"Etiquetas"});
+        });</script></body></html>
